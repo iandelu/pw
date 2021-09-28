@@ -5,26 +5,25 @@ import java.util.ArrayList;
 
 public class Critica implements Serializable {
 
-	private int idCritica;
+	private String idCritica;
 	private Usuario autor;
 	private Espectaculo espectaculo;
 	private String texto;
 	private ArrayList<Valoracion> valoraciones;
 	
 	
-	public Critica(int idCritica, Usuario autor, Espectaculo espectaculo, String texto, ArrayList<Valoracion> valoraciones) {
+	public Critica(String idCritica, Usuario autor, Espectaculo espectaculo, String texto) {
 		super();
 		this.idCritica = idCritica;
 		this.autor = autor;
 		this.espectaculo = espectaculo;
 		this.texto = texto;
-		this.valoraciones = valoraciones;
 	}
 	
-	public int getIdCritica() {
+	public String getIdCritica() {
 		return idCritica;
 	}
-	public void setIdCritica(int idCritica) {
+	public void setIdCritica(String idCritica) {
 		this.idCritica = idCritica;
 	}
 	public Usuario getAutor() {
@@ -50,6 +49,10 @@ public class Critica implements Serializable {
 	}
 	public void setValoraciones(ArrayList<Valoracion> valoraciones) {
 		this.valoraciones = valoraciones;
+	}
+	
+	public void añadirValoracion(Valoracion nuevaValoracion) {
+		valoraciones.add(nuevaValoracion);
 	}
 	
 	
