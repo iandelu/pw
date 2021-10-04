@@ -8,7 +8,7 @@ public class EspectaculoTemporada extends Espectaculo{
 	private LocalDate fechaInicio;
 	private LocalDate fechaFinal;
 	private String diaSemana;
-	public EspectaculoTemporada(int idEspectaculo, String titulo, String descripcion, ArrayList<String> categorias,
+	public EspectaculoTemporada(String idEspectaculo, String titulo, String descripcion, ArrayList<String> categorias,
 			LocalDate fechaInicio, LocalDate fechaFinal, String diaSemana) {
 		super(idEspectaculo, titulo, descripcion, categorias);
 		this.fechaInicio = fechaInicio;

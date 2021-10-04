@@ -20,9 +20,9 @@ public class gestorCriticas {
 		return instance;
 	}
 	
-	public void crearCritica(Usuario usuarioRegistrado, String idCritica, Espectaculo espectaculo, String texto) {
+	public void crearCritica(Usuario usuarioRegistrado, String idCritica, Espectaculo espectaculo, String texto, int puntuacion) {
 		
-		Critica nuevaCritica = new Critica( idCritica,  usuarioRegistrado,  espectaculo,  texto);
+		Critica nuevaCritica = new Critica( idCritica,  usuarioRegistrado,  espectaculo,  texto, puntuacion);
 		gestor.getCriticas().insertar(nuevaCritica);
 
 	}

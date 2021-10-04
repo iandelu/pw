@@ -9,7 +9,7 @@ public class EspectaculoPuntual extends Espectaculo{
 	private LocalDate fecha;
 	private LocalTime hora;
 	
-	public EspectaculoPuntual(int idEspectaculo, String titulo,String descripcion, 
+	public EspectaculoPuntual(String idEspectaculo, String titulo,String descripcion, 
 					ArrayList<String> categorias, LocalDate fecha, LocalTime hora) {
 		super(idEspectaculo, titulo, descripcion, categorias);
 		// TODO Auto-generated constructor stub

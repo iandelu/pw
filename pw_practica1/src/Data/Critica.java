@@ -7,12 +7,13 @@ public class Critica implements Serializable {
 
 	private String idCritica;
 	private Usuario autor;
+	private int puntuacion;
 	private Espectaculo espectaculo;
 	private String texto;
 	private ArrayList<Valoracion> valoraciones;
 	
 	
-	public Critica(String idCritica, Usuario autor, Espectaculo espectaculo, String texto) {
+	public Critica(String idCritica, Usuario autor, Espectaculo espectaculo, String texto, int puntuacion) {
 		super();
 		this.idCritica = idCritica;
 		this.autor = autor;
@@ -53,6 +54,14 @@ public class Critica implements Serializable {
 	
 	public void añadirValoracion(Valoracion nuevaValoracion) {
 		valoraciones.add(nuevaValoracion);
+	}
+
+	public int getPuntuacion() {
+		return puntuacion;
+	}
+
+	public void setPuntuacion(int puntuacion) {
+		this.puntuacion = puntuacion;
 	}
 	
 	
