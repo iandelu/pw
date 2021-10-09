@@ -7,14 +7,16 @@ import java.util.ArrayList;
 import DAOS.DAOManager;
 import Data.Critica;
 import Data.Espectaculo;
+import Data.Usuario;
+import Data.Valoracion;
 
 public class gestorEspectaculos {
 
 	private espectaculoFactory factoria = new espectaculoFactory();
 	
 	private static gestorEspectaculos instance = null;
-	DAOManager gestor = new DAOManager();
-	
+	private DAOManager gestor = new DAOManager();
+	private gestorCriticas gestorCriticas = new gestorCriticas();
 	
 	public static gestorEspectaculos getInstance() {
 		if(instance ==  null) {
@@ -57,20 +59,45 @@ public class gestorEspectaculos {
 	}
 	
 	public void compraEntrada(String idEspectaculo, LocalDate Fecha) {
-		//restar numeroEntradas a idEspectaculo.
+		
+		
+		
 	}
 	
 	public int localidadesRestantes(LocalDate fecha) {
 		//Funcion que al darle una fecha te devuelva las localidades restantes que quedan del espectaculo de ese dia
 	}
 	
-	public void busquedaTitulo(String tituloEspectaculo) {
-		//Introducimos un titulo y muestra da los datos de los espectaculos que tengan ese titulo
+	public ArrayList<Espectaculo> busquedaTitulo(String tituloEspectaculo) {
+		ArrayList<Espectaculo> listaEspectaculos = new ArrayList<Espectaculo>();
+		ArrayList<Espectaculo> todos = (ArrayList<Espectaculo>) gestor.getEspectaculos().obtenerTodos();
+		for(Espectaculo e:todos) {
+			
+			if(e.getTitulo().contains(tituloEspectaculo)) {
+				listaEspectaculos.add(e);
+			}
+			
+		}
+		
+		return listaEspectaculos;
+		
 	}
 	
-	public void busquedaCategoria(String Categorias) {
-		//Introducimos una categoria y te da los datos de los espectaculos que sean de esa categoria
+	public ArrayList<Espectaculo> busquedaCategoria(String Categoria) {
+		ArrayList<Espectaculo> listaEspectaculos = new ArrayList<Espectaculo>();
+		ArrayList<Espectaculo> todos = (ArrayList<Espectaculo>) gestor.getEspectaculos().obtenerTodos();
+		for(Espectaculo e:todos) {
+			
+			if(e.getCategorias().contains(Categoria)) {
+				listaEspectaculos.add(e);
+			}
+			
+		}
+		
+		return listaEspectaculos;
+		
 	}
+	
 
 	public void espectaculosConEntradas() {
 		//Buscar en la lista donde hemos guardado todos los espectaculos dados de alta, los que las localidadesrestantes>0, y mostrarlos en pantalla.
@@ -80,6 +107,29 @@ public class gestorEspectaculos {
 
 
 	
+	public void crearCritica(Usuario usuarioRegistrado, String idCritica, Espectaculo espectaculo, String texto, int puntuacion) {
+		gestorCriticas.crearCritica(usuarioRegistrado, idCritica, espectaculo, texto, puntuacion);
+
+	}
+	
+	public ArrayList<Critica> consultarCriticas(){
+		return gestorCriticas.consultarCriticas();
+	}
+	
+	public boolean borraCritica(Usuario autorSupuesto, String idCritica) {
+		
+		return gestorCriticas.borraCritica(autorSupuesto, idCritica);
+	}
+	
+	public boolean votarUtilidad(Usuario usuarioRegistrado, int valoracionCritica, Critica critica) {
+		
+		return gestorCriticas.votarUtilidad(usuarioRegistrado, valoracionCritica, critica);
+	}
+	
+	public ArrayList<Critica> buscarCriticasUsuario(String nickname){
+		
+		return gestorCriticas.buscarCriticasUsuario(nickname);
+	}
 	
 	
 	
