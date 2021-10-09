@@ -82,7 +82,7 @@ ArrayList<Espectaculo> espectaculos = new ArrayList<Espectaculo>();
 	@Override
 	public void cargarFichero() throws FileNotFoundException, IOException, ClassNotFoundException {
 		
-		ObjectInputStream leerEspectaculos = new ObjectInputStream(new FileInputStream("src/Ficheros/Usuarios.txt"));
+		ObjectInputStream leerEspectaculos = new ObjectInputStream(new FileInputStream("src/Ficheros/Espectaculos.txt"));
 		espectaculos = (ArrayList<Espectaculo>)leerEspectaculos.readObject();
 		leerEspectaculos.close();
 		
@@ -91,7 +91,7 @@ ArrayList<Espectaculo> espectaculos = new ArrayList<Espectaculo>();
 	@Override
 	public void guardarFichero() throws FileNotFoundException, IOException {
 		
-		ObjectOutputStream escribirEspectaculos = new ObjectOutputStream(new FileOutputStream("src/Ficheros/Usuarios.txt"));
+		ObjectOutputStream escribirEspectaculos = new ObjectOutputStream(new FileOutputStream("src/Ficheros/Especatulos.txt"));
 		escribirEspectaculos.writeObject(espectaculos);
 		escribirEspectaculos.close();
 		

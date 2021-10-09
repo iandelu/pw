@@ -7,13 +7,15 @@ public class Funcion {
 
 	private LocalDate fecha;
 	private LocalTime hora;
-	String nombre;
+	private int localidadesRestantes;
+	private String idFuncion;
 	
-	public Funcion(LocalDate fecha, LocalTime hora, String nombre) {
+	public Funcion(LocalDate fecha, LocalTime hora, int localidadesDisponibles,String nombre) {
 		super();
 		this.fecha = fecha;
 		this.hora = hora;
-		this.nombre = nombre;
+		this.localidadesRestantes = localidadesDisponibles;
+		this.idFuncion = fecha.toString()+"-Espectaculo-"+nombre;
 	}
 
 	public LocalDate getFecha() {
@@ -32,12 +34,20 @@ public class Funcion {
 		this.hora = hora;
 	}
 
-	public String getNombre() {
-		return nombre;
+	public int getLocalidadesRestantes() {
+		return localidadesRestantes;
 	}
 
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
+	public void setLocalidadesRestantes(int localidadesRestantes) {
+		this.localidadesRestantes = localidadesRestantes;
+	}
+
+	public String getIdFuncion() {
+		return idFuncion;
+	}
+
+	public void setIdFuncion(String idFuncion) {
+		this.idFuncion = idFuncion;
 	}
 	
 	

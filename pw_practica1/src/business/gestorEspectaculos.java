@@ -31,17 +31,23 @@ public class gestorEspectaculos {
 	}
 	
 	public ArrayList<Espectaculo> consultarEspectaculos(){
-		return gestor.getEspectaculos().obtenerTodos();
+		return (ArrayList<Espectaculo>) gestor.getEspectaculos().obtenerTodos();
 	}
 	
-	public Boolean cancelarEspectaculo(int idEspectaculo) 
+	public Boolean cancelarEspectaculo(String idEspectaculo) 
 	{
-		for(int i=0;i<)//Crea una funcion que vaya guardando todos los espectaculos, la recorres con el for y si esta el id se borra.
+		Espectaculo espectaculoBuscado = gestor.getEspectaculos().obtener(idEspectaculo);
+		gestor.getEspectaculos().eliminar(espectaculoBuscado);
 		
 	}
 	
-	public void actualizarDatos(String idEspectaculo, LocalDate fecha, LocalTime time) {
-		//Buscas el espectaculo en la lista creada, lo borras y metes uno nuevo con los datos que introduzca el usuario por el main
+	public void actualizarDatos(String idEspectaculo, String tituloNuevo, String descripcionNueva, ArrayList<String> Categorias) {
+		Espectaculo nuevoEspectaculo = gestor.getEspectaculos().obtener(idEspectaculo);
+		nuevoEspectaculo.setLocalidadesDisponibles(0);
+		nuevoEspectaculo.setCategorias(Categorias );
+		nuevoEspectaculo.setTitulo(tituloNuevo);
+		nuevoEspectaculo.setDescripcion(tituloNuevo);
+		
 	}
 	
 	public int contabilizarEntradas(int idEspectaculo) {
@@ -50,7 +56,7 @@ public class gestorEspectaculos {
 		//Devuelve el numero de entradas restantes
 	}
 	
-	public int compraEntrada(int idEspectaculo, int numeroEntradas) {
+	public void compraEntrada(String idEspectaculo, LocalDate Fecha) {
 		//restar numeroEntradas a idEspectaculo.
 	}
 	
@@ -58,11 +64,11 @@ public class gestorEspectaculos {
 		//Funcion que al darle una fecha te devuelva las localidades restantes que quedan del espectaculo de ese dia
 	}
 	
-	public void busquedaTitulo(string tituloEspectaculo) {
+	public void busquedaTitulo(String tituloEspectaculo) {
 		//Introducimos un titulo y muestra da los datos de los espectaculos que tengan ese titulo
 	}
 	
-	public void busquedaCategoria(//Aqui va una categoria) {
+	public void busquedaCategoria(String Categorias) {
 		//Introducimos una categoria y te da los datos de los espectaculos que sean de esa categoria
 	}
 

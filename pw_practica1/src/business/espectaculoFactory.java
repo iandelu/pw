@@ -24,7 +24,7 @@ public class espectaculoFactory implements Factory{
 			return nuevoEspectaculoPuntual;
 			
 		}else if(tipoEspectaculo == temporada) {
-			EspectaculoTemporada nuevoEspectaculoTemporada = new EspectaculoTemporada("s", "nuevoEspectaculo", "prueba", new ArrayList<String>(), fecha, fecha, "lunes");
+			EspectaculoTemporada nuevoEspectaculoTemporada = new EspectaculoTemporada("s", "nuevoEspectaculo", "prueba", new ArrayList<String>(), fecha,time);
 			return nuevoEspectaculoTemporada;
 			
 		}else if(tipoEspectaculo == paseMultiple) {

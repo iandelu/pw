@@ -4,6 +4,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import ficheros.DMCriticaDAO;
+import ficheros.DMEspectaculoDAO;
 import ficheros.DMUsuarioDAO;
 
 public class DAOManager {
@@ -12,6 +13,7 @@ public class DAOManager {
 	
 	private DMUsuarioDAO usuarios = null;
 	private DMCriticaDAO criticas = null;
+	private DMEspectaculoDAO espectaculos;
 
 	
 	public DAOManager() {}
@@ -39,7 +41,13 @@ public class DAOManager {
 		return criticas;
 	}
 
-
+	public DMEspectaculoDAO getEspectaculos() {
+		
+		if(espectaculos == null) {
+			espectaculos = new DMEspectaculoDAO();
+		}
+		return espectaculos;
+	}
 	
 	public void guardarFicheros() throws IOException, IOException {
 		

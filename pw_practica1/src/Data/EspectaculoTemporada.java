@@ -1,40 +1,44 @@
 package Data;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 
 public class EspectaculoTemporada extends Espectaculo{
 
-	private LocalDate fechaInicio;
-	private LocalDate fechaFinal;
-	private String diaSemana;
+	private ArrayList<Funcion> funciones;
+	private String diaWeek;
+	
 	public EspectaculoTemporada(String idEspectaculo, String titulo, String descripcion, ArrayList<String> categorias,
-			LocalDate fechaInicio, LocalDate fechaFinal, String diaSemana) {
+			LocalDate fechaInicio, LocalTime hora) {
 		super(idEspectaculo, titulo, descripcion, categorias);
-		this.fechaInicio = fechaInicio;
-		this.fechaFinal = fechaFinal;
-		this.diaSemana = diaSemana;
+		
+		this.añadirFuncion(fechaInicio, hora);
+		this.diaWeek = fechaInicio.getDayOfWeek().name();
+		
 	}
 	
-	public LocalDate getFechaInicio() {
-		return fechaInicio;
-	}
-	public void setFechaInicio(LocalDate fechaInicio) {
-		this.fechaInicio = fechaInicio;
-	}
-	public LocalDate getFechaFinal() {
-		return fechaFinal;
-	}
-	public void setFechaFinal(LocalDate fechaFinal) {
-		this.fechaFinal = fechaFinal;
-	}
-	public String getDiaSemana() {
-		return diaSemana;
-	}
-	public void setDiaSemana(String diaSemana) {
-		this.diaSemana = diaSemana;
+	public void setFunciones(ArrayList<Funcion> funciones) {
+		this.funciones = funciones;
 	}
 	
+	public ArrayList<Funcion> getFunciones(){
+		return this.funciones;
+	}
 	
+	public void añadirFuncion(LocalDate fecha, LocalTime hora) {
+		if(fecha.getDayOfWeek().name()==diaWeek) {
+			Funcion nuevaFuncion = new Funcion(fecha, hora, super.getLocalidadesDisponibles(),super.getTitulo());
+			funciones.add(nuevaFuncion);
+		}
+	}
+
+	public String getDiaWeek() {
+		return diaWeek;
+	}
+
+	public void setDiaWeek(String diaWeek) {
+		this.diaWeek = diaWeek;
+	}
 	
 }

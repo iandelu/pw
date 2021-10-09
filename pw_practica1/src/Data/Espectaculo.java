@@ -9,7 +9,7 @@ public class Espectaculo implements Serializable{
 	private String titulo;
 	private String descripcion;
 	private ArrayList<String> categorias;
-	private int localidadesRestantes;
+	private int localidadesDisponibles;
 	
 	
 	public Espectaculo(String idEspectaculo, String titulo, String descripcion, ArrayList<String> categorias) {
@@ -44,11 +44,11 @@ public class Espectaculo implements Serializable{
 	public void setCategorias(ArrayList<String> categorias) {
 		this.categorias = categorias;
 	}
-	public int getLocalidadesRestantes() {
-		return localidadesRestantes;
+	public int getLocalidadesDisponibles() {
+		return localidadesDisponibles;
 	}
-	public void setLocalidadesRestantes(int localidadesRestantes) {
-		this.localidadesRestantes = localidadesRestantes;
+	public void setLocalidadesDisponibles(int localidadesRestantes) {
+		this.localidadesDisponibles = localidadesRestantes;
 	}
 	
 	

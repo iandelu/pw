@@ -23,7 +23,7 @@ public class EspectaculoPaseMultiple extends Espectaculo{
 	}
 	
 	public void añadirFuncion(LocalDate fecha, LocalTime hora) {
-		Funcion nuevaFuncion = new Funcion(fecha, hora, "Espectaculo"+super.getTitulo()+fecha.toString()+hora.toString());
+		Funcion nuevaFuncion = new Funcion(fecha, hora, super.getLocalidadesDisponibles(),super.getTitulo());
 		funciones.add(nuevaFuncion);
 	}
 	
