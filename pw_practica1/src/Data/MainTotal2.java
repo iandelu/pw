@@ -201,11 +201,36 @@ public class MainTotal2
 					
 				case 9:
 					//. Consultar las críticas de un espectáculo, dado su título
+					//Falta la funcion pa hacerlo
 				case 10:
 					//.Eliminar críticas de un espectáculo, por parte del usuario que la creó
+					System.out.println("\nIntroduce la id de laa critica que quieres borrar: ");
+					entrada= new Scanner(System.in);
+					int idBorrarCritica=entrada.nextInt();
+					
+					System.out.println("\nIntroduce tu nickname: ");
+					entrada=new Scanner(System.in);
+					String nicknameBorrarCritica=entrada.nextLine();
+					
+					//Aqui hay que crear una funcion para que introduciendo un nickname nos den todos los datos del usuario.
+					
+					borraCritica(autorSupuesto, idBorrarCritica);
 
 				case 11:
 					//.Valorar la utilidad de una crítica publicada por otro usuario
+					System.out.println("\nIntroduce tu nickname: ");
+					entrada=new Scanner(System.in);
+					String nicknameUtilidad=entrada.nextLine();//FALTA LA FUNCION DE INTRODUCIR NICKNAME Y QUE DEVUELVA UN USUARIO
+					
+					System.out.println("\nIntroduce la puntuacion a la utilidad de la critica: ");
+					entrada= new Scanner(System.in);
+					int valoracionUtilidad=entrada.nextInt();
+					
+					System.out.println("\nIntroduce el id de la critica valorada: ");
+					entrada= new Scanner(System.in);
+					int idCriticaUtilidad=entrada.nextInt();
+					
+					votarUtilidad(usuarioRegistrado,valoracionUtilidad, idCriticaUtilidad);
 
 				case 12:
 					break;
@@ -214,9 +239,8 @@ public class MainTotal2
 					
 			}
 		
-		
-		
+		}
+
 	}
-
+	
 }
-
