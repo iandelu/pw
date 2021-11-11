@@ -6,6 +6,7 @@ import java.util.ArrayList;
 public class Critica implements Serializable {
 
 	private String idCritica;
+	private String titulo;
 	private Usuario autor;
 	private int puntuacion;
 	private Espectaculo espectaculo;
@@ -13,9 +14,10 @@ public class Critica implements Serializable {
 	private ArrayList<Valoracion> valoraciones;
 	
 	
-	public Critica(String idCritica, Usuario autor, Espectaculo espectaculo, String texto, int puntuacion) {
+	public Critica(String idCritica, String titulo, Usuario autor, Espectaculo espectaculo, String texto, int puntuacion) {
 		super();
 		this.idCritica = idCritica;
+		this.titulo=titulo;
 		this.autor = autor;
 		this.espectaculo = espectaculo;
 		this.texto = texto;
@@ -25,6 +27,12 @@ public class Critica implements Serializable {
 	}
 	public void setIdCritica(String idCritica) {
 		this.idCritica = idCritica;
+	}
+	public String getTituloCritica() {
+		return titulo;
+	}
+	public void setTituloCritica(String titulo) {
+		this.titulo = titulo;
 	}
 	public Usuario getAutor() {
 		return autor;
@@ -51,7 +59,7 @@ public class Critica implements Serializable {
 		this.valoraciones = valoraciones;
 	}
 	
-	public void añadirValoracion(Valoracion nuevaValoracion) {
+	public void aÃ±adirValoracion(Valoracion nuevaValoracion) {
 		valoraciones.add(nuevaValoracion);
 	}
 
