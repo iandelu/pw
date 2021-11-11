@@ -50,5 +50,12 @@ public class Espectaculo implements Serializable{
 	public void setLocalidadesDisponibles(int localidadesRestantes) {
 		this.localidadesDisponibles = localidadesRestantes;
 	}
+
+	@Override
+	public String toString() {
+		return "Espectaculo [idEspectaculo=" + idEspectaculo + ", titulo=" + titulo + ", descripcion=" + descripcion
+				+ ", categorias=" + categorias + ", localidadesDisponibles=" + localidadesDisponibles + "]";
+	}
+	
 	
 }

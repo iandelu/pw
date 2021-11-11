@@ -1,6 +1,6 @@
 package Data;
 import business.gestorCriticas;
-
+import business.gestorEspectaculos;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -14,36 +14,19 @@ public class MainTotal
 {
 	public static void main(String [] args)
 	{
-		System.out.println("---BIENVENIDO AL GESTOR DE CRITICAS---\n");
-		//Entrada de datos(scan)
-		//Nombre
-		System.out.println("Introduce tu nombre: ");
+		/*GESTORES */
+		DAOManager gestorDAO = new DAOManager();
+		gestorCriticas gestorCriticas = new gestorCriticas();
+		gestorEspectaculos gestorEspectaculos = new gestorEspectaculos();
 		
-		Scanner entrada= new Scanner(System.in);
-		String nombre=entrada.nextLine();
+		/*Variables globales*/
+		Usuario usuarioRegistrado = funcionesMain.iniciarSesion();
 		
-		//Apellidos
-		System.out.println("\nIntroduce tus apellidos con _(Rovira_Dominguez: ");
-		entrada=new Scanner(System.in);
-		String apellidos=entrada.nextLine();
-		
-		//Email
-		System.out.println("\nIntroduce tu email: ");
-		entrada=new Scanner(System.in);
-		String aux=entrada.next();
-		Email email = null;
-		try {
-			email = new Email(aux);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
 		
 		//Nickname
 		System.out.println("\nIntroduce tu nickname: ");
-		entrada=new Scanner(System.in);
+		Scanner entrada = new Scanner(System.in);
 		String nickname=entrada.nextLine();
-		
-		Usuario usr= new Usuario(nombre, apellidos, email, nickname);
 		
 		System.out.println("\nTus datos son:");
 		System.out.println("\nNombre="+usr.getNombre()+", apellidos: "+usr.getApellidos());
@@ -86,52 +69,69 @@ public class MainTotal
 					entrada= new Scanner(System.in);
 					int id=entrada.nextInt();
 					
-					System.out.println("\nIntroduce el id del espectaculo: ");
+					
+					ArrayList<Espectaculo> espectaculosDisponibles = gestorEspectaculos.consultarEspectaculos();
+					for(Espectaculo espectaculoAux: espectaculosDisponibles) {
+						System.out.println(espectaculoAux.toString());
+					}
+					
+					System.out.println("\nIntroduce el id del espectaculo que desea criticar: ");
 					entrada= new Scanner(System.in);
-					int id_espectaculo=entrada.nextInt();
-					//Aqui cuando nos dan el id, lo asociamos con el titulo,la descripcion y las categorias.FALTA FUNCION PARA ELLO
+					String id_espectaculo=entrada.nextLine();
+					Espectaculo espectaculoSeleccionado = gestorDAO.getEspectaculos().obtener(id_espectaculo);
 					
-					String titulo=id.titulo(id_espectaculo);
-					String descripcion=id.descripcion(id_espectaculo);
-					ArrayList<String> categorias=id.categorias(id_espectaculo);
-					
-					Espectaculo espect= new Espectaculo(id_espectaculo, titulo,descripcion, categorias);   //***Id de espectaculo deberia ser int(numero)****
-					
+					//***Id de espectaculo deberia ser int(numero)****
 					System.out.println("\nIntroduce tu critica: ");
 					entrada= new Scanner(System.in);
-					String critica=entrada.nextLine();
+					String texto=entrada.nextLine();
 					
 					System.out.println("\nIntroduce la puntuacion al espectaculo: ");
 					entrada= new Scanner(System.in);
 					int puntuacion=entrada.nextInt();
-					
-					crearCritica Cr= new crearCritica(usr,id, espect, critica, puntuacion);
+				
+					gestorCriticas.crearCritica(usr, id_espectaculo, espectaculoSeleccionado, texto, puntuacion);
 					
 				case 2:
 					//2.MOSTRAR TODAS LAS CRITICAS DISPONIBLES
 					System.out.println("\nEstas son todas las criticas disponibles:\n");
-					ArrayList<Critica> lista_criticas= consultarCriticas();
-					//********falta mostrar la lista por pantalla que me rayo**********
+					ArrayList<Critica> criticasDisponibles = gestorEspectaculos.consultarCriticas();
+					for(Critica criticaAux : criticasDisponibles) {
+						System.out.println(criticaAux.toString());
+					}
 					
 				case 3:
 					//3.BORRAR CRITICA SI EL USUARIO LA ESCRIBIÓ 
-					System.out.println("\nCritica creada, si tenias alguna otra critica se borrara.\n");
-					borraCritica(usr,id);
+					ArrayList<Critica> criticasDisponibles1 = gestorEspectaculos.consultarCriticas();
+					for(Critica criticaAux : criticasDisponibles1) {
+						System.out.println(criticaAux.toString());
+					}
+			
+					System.out.println("\nEstas son todas las criticas disponibles, "
+										+ "seleccione la ID de la que desea borrar\n");
+					entrada= new Scanner(System.in);
+					String idCritica=entrada.nextLine();
+					gestorCriticas.borraCritica(usuarioRegistrado, idCritica);
 					
 				case 4:
 					//4.VOTAR UTILIDAD DE UNA CRITICA DE OTRO USUARIO REGISTRADO
+					
 					System.out.println("Puntuación de la critica que has leido:");
 					entrada=new Scanner(System.in);
-					int valoracion_critica=entrada.nextInt();
-					votarUtilidad votar= new votarUtilidad(usr, valoracion_critica, Cr);
+					String idCriticaValorar=entrada.nextLine();
+					Critica criticaSeleccionada = gestorDAO.getCriticas().obtener(idCriticaValorar);
+					
+					System.out.println("Puntuación de la critica que has leido:");
+					entrada=new Scanner(System.in);
+					int valoracionCritica=entrada.nextInt();
+					gestorEspectaculos.votarUtilidad(usuarioRegistrado, valoracionCritica, criticaSeleccionada);
 					System.out.println("\nPuntuación dada correctamente...\n");
 					
 				case 5:
 					//5.BUSCAR LAS CRITICAS DE UN USUARIO REGISTRADO.
 					System.out.println("\nIntroduce el nickname de la persona cuya critica quieras encontrar: ");
 					entrada=new Scanner(System.in);
-					String nickname_buscar=entrada.nextLine();
-					ArrayList<Critica> Buscador_criticas= buscarCriticasUsuario(nickname_buscar);
+					String nicknameUsuario = entrada.nextLine();
+					ArrayList<Critica> buscarCriticas = gestorEspectaculos.buscarCriticasUsuario(nicknameUsuario);
 					
 				default:
 					System.out.println("Has elegido salir del programa, adios\n");

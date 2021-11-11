@@ -10,6 +10,7 @@ public class Espectaculo implements Serializable{
 	private String descripcion;
 	private ArrayList<String> categorias;
 	private int localidadesDisponibles;
+	private String tipoEspectaculo;
 	
 	
 	public Espectaculo(Long idEspectaculo, String titulo, String descripcion, ArrayList<String> categorias) {
@@ -49,6 +50,12 @@ public class Espectaculo implements Serializable{
 	}
 	public void setLocalidadesDisponibles(int localidadesRestantes) {
 		this.localidadesDisponibles = localidadesRestantes;
+	}
+	public String getTipoEspectaculo() {
+		return tipoEspectaculo;
+	}
+	public void setTipoEspectaculo(String tipoEspectaculo) {
+		this.tipoEspectaculo = tipoEspectaculo;
 	}
 	
 }

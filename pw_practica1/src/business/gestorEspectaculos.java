@@ -36,7 +36,7 @@ public class gestorEspectaculos {
 		return (ArrayList<Espectaculo>) gestor.getEspectaculos().obtenerTodos();
 	}
 	
-	public Boolean cancelarEspectaculo(String idEspectaculo) 
+	public void cancelarEspectaculo(String idEspectaculo) 
 	{
 		Espectaculo espectaculoBuscado = gestor.getEspectaculos().obtener(idEspectaculo);
 		gestor.getEspectaculos().eliminar(espectaculoBuscado);
