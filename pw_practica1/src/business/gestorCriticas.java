@@ -20,9 +20,9 @@ public class gestorCriticas {
 		return instance;
 	}
 	
-	public void crearCritica(Usuario usuarioRegistrado, String idCritica, Espectaculo espectaculo, String texto, int puntuacion) {
+	public void crearCritica(String idCritica, String titulo ,Usuario usuarioRegistrado, Espectaculo espectaculo, String texto, int puntuacion) {
 		
-		Critica nuevaCritica = new Critica( idCritica,  usuarioRegistrado,  espectaculo,  texto, puntuacion);
+		Critica nuevaCritica = new Critica( idCritica, titulo ,usuarioRegistrado,  espectaculo,  texto, puntuacion);
 		gestor.getCriticas().insertar(nuevaCritica);
 
 	}
@@ -50,7 +50,7 @@ public class gestorCriticas {
 			//no se pueden valorar tus propias criticas
 			return false;
 		}
-		critica.añadirValoracion(nuevaValoracion);
+		critica.aÃ±adirValoracion(nuevaValoracion);
 		return true;
 	}
 	
