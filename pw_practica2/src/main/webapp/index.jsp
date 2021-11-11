@@ -12,7 +12,7 @@
 		<div class="container col-lg-3">
 			<form action="Principal.jsp">
 				<div class="form-group text-center">
-					<img src="images/usuario1.jpg" height="80" width="80"/>
+					<img src="images/usuario1.png" height="80" width="80"/>
 					<p><strong>Bienvenidos al sistema</strong></p>
 				</div>
 				<div class="form-group">

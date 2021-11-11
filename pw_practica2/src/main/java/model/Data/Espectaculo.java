@@ -5,14 +5,14 @@ import java.util.ArrayList;
 
 public class Espectaculo implements Serializable{
 
-	private int idEspectaculo;
+	private Long idEspectaculo;
 	private String titulo;
 	private String descripcion;
 	private ArrayList<String> categorias;
 	private int localidadesDisponibles;
 	
 	
-	public Espectaculo(int idEspectaculo, String titulo, String descripcion, ArrayList<String> categorias) {
+	public Espectaculo(Long idEspectaculo, String titulo, String descripcion, ArrayList<String> categorias) {
 		super();
 		this.idEspectaculo = idEspectaculo;
 		this.titulo = titulo;
@@ -20,10 +20,10 @@ public class Espectaculo implements Serializable{
 		this.categorias = categorias;
 	}
 	
-	public int getIdEspectaculo() {
+	public Long getIdEspectaculo() {
 		return idEspectaculo;
 	}
-	public void setIdEspectaculo(int idEspectaculo) {
+	public void setIdEspectaculo(Long idEspectaculo) {
 		this.idEspectaculo = idEspectaculo;
 	}
 	public String getTitulo() {

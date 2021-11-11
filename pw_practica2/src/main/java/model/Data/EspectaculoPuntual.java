@@ -8,7 +8,7 @@ public class EspectaculoPuntual extends Espectaculo{
 
 	private Funcion funcionPuntual;
 	
-	public EspectaculoPuntual(int idEspectaculo, String titulo,String descripcion, 
+	public EspectaculoPuntual(Long idEspectaculo, String titulo,String descripcion, 
 					ArrayList<String> categorias, LocalDate fecha, LocalTime hora) {
 		super(idEspectaculo, titulo, descripcion, categorias);
 		// TODO Auto-generated constructor stub

@@ -90,13 +90,7 @@ public class MySQLUsuarioDAO implements UsuarioDAO{
 		// TODO Auto-generated method stub
 		
 	}
-    
-
-    /*
-    *   ----------------------------------------------------------------
-    *   FUNCIONES BASICAS DE DAO JUGADOR INSERTAR, BORRAR, OBTENER, ETC
-    *   ----------------------------------------------------------------
-    */
+  
     
     
 

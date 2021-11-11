@@ -68,7 +68,7 @@ ArrayList<Espectaculo> espectaculos = new ArrayList<Espectaculo>();
 	}
 
 	@Override
-	public Espectaculo obtener(int id) {
+	public Espectaculo obtener(Long id) {
 		
 		for(Espectaculo UsuarioAuxiliar : espectaculos) {
 			if(UsuarioAuxiliar.getIdEspectaculo() == id) {

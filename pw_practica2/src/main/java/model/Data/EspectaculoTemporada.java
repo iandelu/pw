@@ -9,7 +9,7 @@ public class EspectaculoTemporada extends Espectaculo{
 	private ArrayList<Funcion> funciones;
 	private String diaWeek;
 	
-	public EspectaculoTemporada(int idEspectaculo, String titulo, String descripcion, ArrayList<String> categorias,
+	public EspectaculoTemporada(Long idEspectaculo, String titulo, String descripcion, ArrayList<String> categorias,
 			LocalDate fechaInicio, LocalTime hora) {
 		super(idEspectaculo, titulo, descripcion, categorias);
 		

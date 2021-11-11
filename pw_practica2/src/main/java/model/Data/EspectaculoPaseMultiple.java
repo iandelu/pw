@@ -8,7 +8,7 @@ public class EspectaculoPaseMultiple extends Espectaculo{
 
 	private ArrayList<Funcion> funciones;
 
-	public EspectaculoPaseMultiple(int idEspectaculo, String titulo, String descripcion, ArrayList<String> categorias, LocalDate fecha, LocalTime tiempo) {
+	public EspectaculoPaseMultiple(Long idEspectaculo, String titulo, String descripcion, ArrayList<String> categorias, LocalDate fecha, LocalTime tiempo) {
 		super(idEspectaculo, titulo, descripcion, categorias);
 		this.añadirFuncion(fecha, tiempo);
 		
