@@ -52,10 +52,13 @@ public class gestorEspectaculos {
 		
 	}
 	
-	public int contabilizarEntradas(int idEspectaculo) {
-		//Cuenta las entradas que tiene cada espectaculo. Como tenemos la variable privada localidadesRestantes, creamos una funcion que reste esta
-		//variable x si le compran x entradas, y el resto entre las entradas iniciales y localidadesRestantes son las vendidas.
-		//Devuelve el numero de entradas restantes
+	public int contabilizarEntradas(String idEspectaculo) {
+		
+		Espectaculo espectaculoAux = gestor.getEspectaculos().obtener(idEspectaculo);
+		
+		
+		
+		
 	}
 	
 	public void compraEntrada(String idEspectaculo, LocalDate Fecha) {
@@ -66,6 +69,7 @@ public class gestorEspectaculos {
 	
 	public int localidadesRestantes(LocalDate fecha) {
 		//Funcion que al darle una fecha te devuelva las localidades restantes que quedan del espectaculo de ese dia
+		
 	}
 	
 	public ArrayList<Espectaculo> busquedaTitulo(String tituloEspectaculo) {

@@ -89,7 +89,7 @@ public class MainTotal
 					entrada= new Scanner(System.in);
 					int puntuacion=entrada.nextInt();
 				
-					gestorCriticas.crearCritica(usr, id_espectaculo, espectaculoSeleccionado, texto, puntuacion);
+					gestorCriticas.crearCritica(usuarioRegistrado, id_espectaculo, espectaculoSeleccionado, texto, puntuacion);
 					
 				case 2:
 					//2.MOSTRAR TODAS LAS CRITICAS DISPONIBLES
