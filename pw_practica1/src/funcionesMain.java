@@ -1,6 +1,7 @@
 import java.util.Scanner;
 
 import DAOS.DAOManager;
+import Data.Email;
 import Data.Usuario;
 
 public class funcionesMain {
@@ -25,15 +26,15 @@ public class funcionesMain {
 	}
 	
 	
-	public static Usuario registrarse() {
+	public static Usuario registrarse(String nickname) throws Exception {
 		
-		String nickname =entrada.nextLine();
-		if(gestorDAO.getUsuarios().obtener(nickname) == null) {
+
+		//if(gestorDAO.getUsuarios().obtener(nickname) == null) {
 			
 			System.out.println("\nTe vas a registrar.: ");
 			
 			System.out.println("\nIntroduce tu nombre: ");
-			entrada= new Scanner(System.in);
+			Scanner entrada= new Scanner(System.in);
 			String nombre=entrada.nextLine();
 			
 			System.out.println("\nIntroduce tus apellidos con guion intermedio(ejemplo: Fernandez_Jimenez): ");
@@ -45,14 +46,11 @@ public class funcionesMain {
 			String email=entrada.nextLine();
 			Email emailnuevo= new Email(email);
 			
-			System.out.println("\nIntroduce tu nickname: ");
-			entrada= new Scanner(System.in);
-			String nickname=entrada.nextLine();
-			
-			Usuario usuarioNew =new Usuario(nombre,apellidos,emailnuevo,nickname);
+			Usuario usuarioNew = new Usuario(nombre,apellidos,emailnuevo,nickname);
 			gestorDAO.getUsuarios().insertar(usuarioNew);
-			
-		}
+			return usuarioNew;
+		//}
+		
 	}
 	
 	
