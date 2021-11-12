@@ -9,10 +9,11 @@ import Data.Espectaculo;
 import Data.Usuario;
 import Data.Valoracion;
 import DAOS.DAOManager;
+import Data.Email;
 
 public class MainTotal 
 {
-	public static void main(String [] args)
+	public static void main(String [] args) throws Exception
 	{
 		/*GESTORES */
 		DAOManager gestorDAO = new DAOManager();
@@ -20,10 +21,11 @@ public class MainTotal
 		gestorEspectaculos gestorEspectaculos = new gestorEspectaculos();
 		
 		/*Variables globales*/
-		
+		String miau="miau@gmail.com";
+		Email email1=new Email(miau);
 		int i=0;
-		Usuario usuarioNew= funcionesMain.iniciarSesion();
-		/*while(i==0)
+		Usuario usuarioNew= new Usuario("nombre1","apellidos1",email1,"nickname1");
+		while(i==0)
 		{
 			System.out.println("\nIntroduce 1 para entrar con tu usuario o 2 para registrarte: ");
 			Scanner entrada= new Scanner(System.in);
@@ -37,14 +39,17 @@ public class MainTotal
 					i++;
 					break;
 				case 2:
-					usuarioNew = funcionesMain.registrarse();
+					System.out.println("\nIntroduce tu nickname: ");
+					entrada = new Scanner(System.in);
+					String nickname=entrada.nextLine();
+					usuarioNew = funcionesMain.registrarse(nickname);
 					i++;
 					break;
 				default:
 					System.out.println("/nNumero no valido.");
 					break;
 			}
-		}*/
+		}
 		
 		
 		System.out.println("\nTus datos son:");
@@ -112,11 +117,7 @@ public class MainTotal
 					entrada= new Scanner(System.in);
 					int puntuacion=entrada.nextInt();
 				
-<<<<<<< HEAD
-					gestorCriticas.crearCritica(usuarioRegistrado, id_espectaculo, espectaculoSeleccionado, texto, puntuacion);
-=======
 					gestorCriticas.crearCritica(id_espectaculo, tituloCritica ,usuarioNew ,espectaculoSeleccionado, texto, puntuacion);
->>>>>>> 7ff70035a6ab2e42311c497f7bf369ad6ea5c096
 					
 				case 2:
 					//2.MOSTRAR TODAS LAS CRITICAS DISPONIBLES
@@ -136,7 +137,7 @@ public class MainTotal
 					System.out.println("\nEstas son todas las criticas disponibles, "
 										+ "seleccione la ID de la que desea borrar\n");
 					entrada= new Scanner(System.in);
-					String idCritica=entrada.nextLine();
+					int idCritica=entrada.nextInt();
 					gestorCriticas.borraCritica(usuarioNew, idCritica);
 					
 				case 4:
@@ -168,4 +169,3 @@ public class MainTotal
 		//FALTA comprobar que las funciones 3,4,5 estan bien hechas	
 	}
 }
-
