@@ -12,10 +12,10 @@ import Data.Valoracion;
 
 public class gestorEspectaculos {
 
-	private espectaculoFactory factoria = new espectaculoFactory();
+	private static espectaculoFactory factoria = new espectaculoFactory();
 	
 	private static gestorEspectaculos instance = null;
-	private DAOManager gestor = new DAOManager();
+	private static DAOManager gestor = new DAOManager();
 	private gestorCriticas gestorCriticas = new gestorCriticas();
 	
 	public static gestorEspectaculos getInstance() {
@@ -25,10 +25,10 @@ public class gestorEspectaculos {
 		return instance;
 	}
 	
-	public void darAltaEspectaculo(String idEspectaculo, LocalDate fecha, LocalTime time) {
+	public static void darAltaEspectaculo(String idEspectaculo, LocalDate fecha, LocalTime time) {
 	
 		Espectaculo nuevoEspectaculo = factoria.crearEspectaculo(idEspectaculo, fecha, time);
-		//añadir espectaculo a los ficheros
+		//aÃ±adir espectaculo a los ficheros
 		
 	}
 	
@@ -36,14 +36,14 @@ public class gestorEspectaculos {
 		return (ArrayList<Espectaculo>) gestor.getEspectaculos().obtenerTodos();
 	}
 	
-	public void cancelarEspectaculo(String idEspectaculo) 
+	public static void cancelarEspectaculo(int idEspectaculo) 
 	{
-		Espectaculo espectaculoBuscado = gestor.getEspectaculos().obtener(idEspectaculo);
+		Espectaculo espectaculoBuscado = gestor.getEspectaculos().obtenerEspectaculo(idEspectaculo);
 		gestor.getEspectaculos().eliminar(espectaculoBuscado);
 		
 	}
 	
-	public void actualizarDatos(String idEspectaculo, String tituloNuevo, String descripcionNueva, ArrayList<String> Categorias) {
+	public static void actualizarDatos(String idEspectaculo, String tituloNuevo, String descripcionNueva, ArrayList<String> Categorias) {
 		Espectaculo nuevoEspectaculo = gestor.getEspectaculos().obtener(idEspectaculo);
 		nuevoEspectaculo.setLocalidadesDisponibles(0);
 		nuevoEspectaculo.setCategorias(Categorias );
@@ -52,12 +52,8 @@ public class gestorEspectaculos {
 		
 	}
 	
-	public int contabilizarEntradas(String idEspectaculo) {
-		
-		Espectaculo espectaculoAux = gestor.getEspectaculos().obtener(idEspectaculo);
-		
-		
-		
+	public int contabilizarEntradas(int idEspectaculo) {
+		return 1;//hayq ue recorrer todos los espectaculos y que nos de las entradas vendidas
 		
 	}
 	
@@ -68,8 +64,7 @@ public class gestorEspectaculos {
 	}
 	
 	public int localidadesRestantes(LocalDate fecha) {
-		//Funcion que al darle una fecha te devuelva las localidades restantes que quedan del espectaculo de ese dia
-		
+		return 1;//Funcion que al darle una fecha te devuelva las localidades restantes que quedan del espectaculo de ese dia
 	}
 	
 	public ArrayList<Espectaculo> busquedaTitulo(String tituloEspectaculo) {
@@ -108,19 +103,12 @@ public class gestorEspectaculos {
 	}
 	
 		//Faltan funciones del 9 al 12 por po er
-
-
-	
-	public void crearCritica(Usuario usuarioRegistrado, String idCritica, Espectaculo espectaculo, String texto, int puntuacion) {
-		gestorCriticas.crearCritica(usuarioRegistrado, idCritica, espectaculo, texto, puntuacion);
-
-	}
 	
 	public ArrayList<Critica> consultarCriticas(){
 		return gestorCriticas.consultarCriticas();
 	}
 	
-	public boolean borraCritica(Usuario autorSupuesto, String idCritica) {
+	public boolean borraCritica(Usuario autorSupuesto, int idCritica) {
 		
 		return gestorCriticas.borraCritica(autorSupuesto, idCritica);
 	}
