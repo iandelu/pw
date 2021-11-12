@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import DAOS.EspectaculoDAO;
+import Data.Critica;
 import Data.Espectaculo;
 import Data.Usuario;
 
@@ -68,10 +69,10 @@ ArrayList<Espectaculo> espectaculos = new ArrayList<Espectaculo>();
 	}
 
 	@Override
-	public Espectaculo obtener(String id) {
+	public Espectaculo obtenerEspectaculo(int id) {
 		
 		for(Espectaculo UsuarioAuxiliar : espectaculos) {
-			if(UsuarioAuxiliar.getIdEspectaculo().equals(id)) {
+			if(UsuarioAuxiliar.getIdEspectaculo()==id) {
 				return UsuarioAuxiliar;
 			}
 		}
@@ -95,6 +96,18 @@ ArrayList<Espectaculo> espectaculos = new ArrayList<Espectaculo>();
 		escribirEspectaculos.writeObject(espectaculos);
 		escribirEspectaculos.close();
 		
+	}
+
+	@Override
+	public Espectaculo obtener(String id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Critica obtenerCritica(int id) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	
