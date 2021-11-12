@@ -31,9 +31,9 @@ public class gestorCriticas {
 		return gestor.getCriticas().obtenerTodos();
 	}
 	
-	public boolean borraCritica(Usuario autorSupuesto, String idCritica) {
+	public boolean borraCritica(Usuario autorSupuesto, int idCritica) {
 		
-		Critica criticaAuxiliar = gestor.getCriticas().obtener(idCritica);
+		Critica criticaAuxiliar = gestor.getCriticas().obtenerCritica(idCritica);
 		if(criticaAuxiliar.getAutor() == autorSupuesto) {
 			gestor.getCriticas().eliminar(criticaAuxiliar);
 			return true;
@@ -50,7 +50,7 @@ public class gestorCriticas {
 			//no se pueden valorar tus propias criticas
 			return false;
 		}
-		critica.anadirValoracion(nuevaValoracion);
+		critica.adirValoracion(nuevaValoracion);
 		return true;
 	}
 	
