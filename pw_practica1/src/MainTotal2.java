@@ -1,30 +1,41 @@
-package Data;
+
 import java.util.Scanner;
+
+import Data.Critica;
+import Data.Espectaculo;
+import Data.Usuario;
+
 import java.util.ArrayList;
 import java.util.Date;
 import business.gestorEspectaculos;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
+
+
 public class MainTotal2 
 {
+	static ArrayList<String> categorias;
+	
 	public static void main(String args[])
 	{
+		Usuario usr = funcionesMain.iniciarSesion();
+		
 		System.out.println("Elige una de las siguientes opciones:\n");
-		System.out.println("1. Dar de alta un espectáculo, incluyendo al menos una fecha de representación\r\n"
-				+ "2. Cancelar un espectáculo (todas las sesiones o una en particular)\r\n"
-				+ "3. Actualizar los datos de un espectáculo\r\n"
-				+ "4. Contabilizar la venta de entradas para una sesión de un espectáculo\r\n"
-				+ "5. Consultar las localidades disponibles para un espectáculo, dada una fecha de\r\n"
-				+ "representación\r\n"
-				+ "6. Búsqueda de espectáculos por título o por categoría\r\n"
-				+ "Práctica 1: Iniciación a Java Pág. 4\r\n"
-				+ "7. Búsqueda de próximos espectáculos con entradas disponibles, indicando o no una\r\n"
-				+ "categoría específica\r\n"
-				+ "8. Publicar una crítica para un espectáculo que ya se ha celebrado\r\n"
-				+ "9. Consultar las críticas de un espectáculo, dado su título\r\n"
-				+ "10.Eliminar críticas de un espectáculo, por parte del usuario que la creó\r\n"
-				+ "11.Valorar la utilidad de una crítica publicada por otro usuario\n");
+		System.out.println("1. Dar de alta un espectaculo, incluyendo al menos una fecha de representacion\r\n"
+				+ "2. Cancelar un espectaculo (todas las sesiones o una en particular)\r\n"
+				+ "3. Actualizar los datos de un espectaculo\r\n"
+				+ "4. Contabilizar la venta de entradas para una sesion de un espectaculo\r\n"
+				+ "5. Consultar las localidades disponibles para un espectaculo, dada una fecha de\r\n"
+				+ "representacion\r\n"
+				+ "6. Busqueda de espectaculos por titulo o por categoria\r\n"
+				+ "Practica 1: Iniciacion a Java Pag. 4\r\n"
+				+ "7. Busqueda de proximos espectaculos con entradas disponibles, indicando o no una\r\n"
+				+ "categoria especifica\r\n"
+				+ "8. Publicar una critica para un espectaculo que ya se ha celebrado\r\n"
+				+ "9. Consultar las criticas de un espectaculo, dado su titulo\r\n"
+				+ "10.Eliminar criticas de un espectaculo, por parte del usuario que la crea\r\n"
+				+ "11.Valorar la utilidad de una critica publicada por otro usuario\n");
 		Scanner entrada= new Scanner(System.in);
 		int opcion=entrada.nextInt();
 		int i=0;
@@ -33,19 +44,21 @@ public class MainTotal2
 		{
 			if(i!=0)
 			{
-				System.out.println("Elige alguna de las siguientes opciones de nuevo.\n");
-				System.out.println("1. Dar de alta un espectáculo, incluyendo al menos una fecha de representación\r\n"
-						+ "2. Cancelar un espectáculo (todas las sesiones o una en particular)\r\n"
-						+ "3. Actualizar los datos de un espectáculo\r\n"
-						+ "4. Contabilizar la venta de entradas para una sesión de un espectáculo\r\n"
-						+ "5. Consultar las localidades disponibles para un espectáculo, dada una fecha de representación\r\n"
-						+ "6. Búsqueda de espectáculos por título o por categoría\r\n"
-						+ "7. Búsqueda de próximos espectáculos con entradas disponibles, indicando o no una categoría específica\r\n"
-						+ "8. Publicar una crítica para un espectáculo que ya se ha celebrado\r\n"
-						+ "9. Consultar las críticas de un espectáculo, dado su título\r\n"
-						+ "10.Eliminar críticas de un espectáculo, por parte del usuario que la creó\r\n"
-						+ "11.Valorar la utilidad de una crítica publicada por otro usuario\r\n"
-						+ "12.Salir del gestor de espectaculos\n");
+				System.out.println("Elige una de las siguientes opciones:\n");
+				System.out.println("1. Dar de alta un espectaculo, incluyendo al menos una fecha de representacion\r\n"
+						+ "2. Cancelar un espectaculo (todas las sesiones o una en particular)\r\n"
+						+ "3. Actualizar los datos de un espectaculo\r\n"
+						+ "4. Contabilizar la venta de entradas para una sesion de un espectaculo\r\n"
+						+ "5. Consultar las localidades disponibles para un espectaculo, dada una fecha de\r\n"
+						+ "representacion\r\n"
+						+ "6. Busqueda de espectaculos por titulo o por categoria\r\n"
+						+ "Practica 1: Iniciacion a Java Pag. 4\r\n"
+						+ "7. Busqueda de proximos espectaculos con entradas disponibles, indicando o no una\r\n"
+						+ "categoria especifica\r\n"
+						+ "8. Publicar una critica para un espectaculo que ya se ha celebrado\r\n"
+						+ "9. Consultar las criticas de un espectaculo, dado su titulo\r\n"
+						+ "10.Eliminar criticas de un espectaculo, por parte del usuario que la crea\r\n"
+						+ "11.Valorar la utilidad de una critica publicada por otro usuario\n");
 				entrada=new Scanner(System.in);
 				opcion=entrada.nextInt();
 			}
@@ -76,52 +89,44 @@ public class MainTotal2
 					int segundos=00;
 					
 					LocalTime time=LocalTime.of(horas,minutos,segundos);//Guarda en time la hora del espectaculo.
-					darAltaEspectaculo(idEspectaculo, fecha, time);
+					gestorEspectaculos.darAltaEspectaculo(idEspectaculo, fecha, time);
 					
 					System.out.println("\nEspectaculo dado de alta\n");
 					
 				case 2:
-					//Cancelar un espectáculo
+					//Cancelar un espectaculo
 					System.out.println("Id del espectaculo que quieres cancelar: ");
 					int idEspectaculoBorrar= entrada.nextInt();
-					cancelarEspectaculo(idEspectaculoBorrar);
+					gestorEspectaculos.cancelarEspectaculo(idEspectaculoBorrar);//funcion en gestorEspectaculos
 					System.out.println("\nEspectaculo cancelado\n");
 					
 				case 3:
-					// Actualizar los datos de un espectáculo
+					// Actualizar los datos de un espectaculo
 					System.out.println("Introduce el id del espectaculo que quieres modificar: ");	
 					int idCambio= entrada.nextInt();
 					
-					System.out.println("\nIntroduce la nueva fecha y la hora del espectaculo:\n");
-					System.out.println("\nAño: ");
-					int añoCambio=entrada.nextInt();
-					System.out.println("\nMes: ");
-					int mesCambio=entrada.nextInt();
-					System.out.println("\ndia: ");
-					int diaCambio=entrada.nextInt();
+					System.out.println("\nIntroduce nuevo titulo de la critica que quieres actualizar: ");
+					entrada= new Scanner(System.in);
+					String tituloNuevo=entrada.nextLine();
 					
-					LocalDate fechaCambio=LocalDate.of(año,mes,dia);//Guarda en fecha la fecha.
+					System.out.println("\nIntroduce la nueva critica: ");
+					entrada= new Scanner(System.in);
+					String descripcionNueva=entrada.nextLine();
 					
-					System.out.println("\nHora:");
-					int horasCambio=entrada.nextInt();
-					System.out.println("\nMinutos:");
-					int minutosCambio=entrada.nextInt();
-					int segundosCambio=00;
 					
-					LocalTime timeCambio=LocalTime.of(horas,minutos,segundos);//Guarda en time la hora del espectaculo.
-					actualizarDatos(idEspectaculo, fechaCambio, timeCambio);
+					gestorEspectaculos.actualizarDatos(idCambio, tituloNuevo, descripcionNueva, categorias);//funcion en gestorEspectaculos
 					
 					System.out.println("\nEspectaculo cambiado\n");
 					
 				case 4:
-					//. Contabilizar la venta de entradas para una sesión de un espectáculo
+					//. Contabilizar la venta de entradas para una sesiÃ³n de un espectÃ¡culo
 					System.out.println("Introduce el id del espectaculo del cual quieres ver las entradas vendidas:");
 					int idContabilizar=entrada.nextInt();
-					int numeroVentas = contabilizarEntradas(idContabilizar);
+					int numeroVentas = contabilizarEntradas(idContabilizar);//hacer funcion
 					System.out.println("\n Se han vendido "+numeroVentas+" entradas.\n");
 					
 				case 5: 
-					//Consultar las localidades disponibles para un espectáculo, dada una fecha de representación
+					//Consultar las localidades disponibles para un espectÃ¡culo, dada una fecha de representaciÃ³n
 					System.out.println("Introduce la fecha de la que quieres saber las plazas restantes:\n");
 					System.out.println("\nAño: ");
 					int añoLocalidadesRestantes=entrada.nextInt();
@@ -131,12 +136,12 @@ public class MainTotal2
 					int diaLocalidadesRestantes=entrada.nextInt();
 					
 					LocalDate fechaLocalidadesRestantes=LocalDate.of(añoLocalidadesRestantes,mesLocalidadesRestantes,diaLocalidadesRestantes);
-					int numeroLocalidadesRestantes=localidadesRestantes(fechaLocalidadesRestantes);
+					int numeroLocalidadesRestantes=localidadesRestantes(fechaLocalidadesRestantes);//hacer funcion
 					
 					System.out.println("\n Para esa fecha, quedan "+numeroLocalidadesRestantes+" entradas.\n");
 					
 				case 6:
-					//. Búsqueda de espectáculos por título o por categoría
+					//. Busqueda de espectÃ¡culos por tÃ­tulo o por categorÃ­a
 					System.out.println("Inserta 1 para introducir titulo o 2 para introducir categoria:");
 					int eleccion=entrada.nextInt();
 					switch(eleccion)
@@ -144,24 +149,24 @@ public class MainTotal2
 					case 1:
 						System.out.println("\nInserta el titulo:");
 						String tituloBusqueda=entrada.nextLine();
-						busquedaTitulo(tituloBusqueda);
+						busquedaTitulo(tituloBusqueda);//funcion en gestorEspectaculos
 						break;
 						
 					case 2:
 						System.out.println("\nInserta la categoria:");
 						String categoriaBusqueda=entrada.nextLine();
-						busquedaCategoria(categoriaBusqueda);
+						busquedaCategoria(categoriaBusqueda);///funcion en gestorEspectaculos
 						break;
 					}
 					
 				case 7:
-					//Búsqueda de próximos espectáculos con entradas disponibles, indicando o no una categoría específica
-					espectaculosConEntradas();
+					//BÃºsqueda de prÃ³ximos espectÃ¡culos con entradas disponibles, indicando o no una categorÃ­a especÃ­fica
+					espectaculosConEntradas();//hacer funcion
 					
 				case 8:
-					//Publicar una crítica para un espectáculo que ya se ha celebrado
+					//Publicar una crÃ­tica para un espectÃ¡culo que ya se ha celebrado
 					System.out.println("Inserta la fecha en la que fue el espectaculo: ");
-					System.out.println("\nAño: ");
+					System.out.println("\nAÃ±o: ");
 					int añoEspectaculo=entrada.nextInt();
 					System.out.println("\nMes: ");
 					int mesEspectaculo=entrada.nextInt();
@@ -174,6 +179,10 @@ public class MainTotal2
 						System.out.println("\nIntroduce el id de tu critica: ");
 						entrada= new Scanner(System.in);
 						int id=entrada.nextInt();
+						
+						System.out.println("\nIntroduce el titulo de tu critica: ");
+						entrada= new Scanner(System.in);
+						String tituloCritica=entrada.nextLine();
 						
 						System.out.println("\nIntroduce el id del espectaculo: ");
 						entrada= new Scanner(System.in);
@@ -194,17 +203,20 @@ public class MainTotal2
 						entrada= new Scanner(System.in);
 						int puntuacion=entrada.nextInt();
 						
-						crearCritica Cr= new crearCritica(usr,id, espect, critica, puntuacion);
+						crearCritica(id, tituloCritica , usr , espect, critica ,puntuacion);//funcion gestorCriticas
 						break;
 					}
 					break;
 					
 				case 9:
-					//. Consultar las críticas de un espectáculo, dado su título
-					//Falta la funcion pa hacerlo
+					
+					System.out.println("\n");
+					consultarCriticas();
+					System.out.println("\n");
+					
 				case 10:
-					//.Eliminar críticas de un espectáculo, por parte del usuario que la creó
-					System.out.println("\nIntroduce la id de laa critica que quieres borrar: ");
+					//.Eliminar criticas de un espectaculo, por parte del usuario que la crea
+					System.out.println("\nIntroduce la id de la critica que quieres borrar: ");
 					entrada= new Scanner(System.in);
 					int idBorrarCritica=entrada.nextInt();
 					
@@ -217,7 +229,7 @@ public class MainTotal2
 					borraCritica(autorSupuesto, idBorrarCritica);
 
 				case 11:
-					//.Valorar la utilidad de una crítica publicada por otro usuario
+					//.Valorar la utilidad de una critica publicada por otro usuario
 					System.out.println("\nIntroduce tu nickname: ");
 					entrada=new Scanner(System.in);
 					String nicknameUtilidad=entrada.nextLine();//FALTA LA FUNCION DE INTRODUCIR NICKNAME Y QUE DEVUELVA UN USUARIO
@@ -230,7 +242,7 @@ public class MainTotal2
 					entrada= new Scanner(System.in);
 					int idCriticaUtilidad=entrada.nextInt();
 					
-					votarUtilidad(usuarioRegistrado,valoracionUtilidad, idCriticaUtilidad);
+					votarUtilidad(usuarioNickname,valoracionUtilidad, idCriticaUtilidad);
 
 				case 12:
 					break;
