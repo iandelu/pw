@@ -1,6 +1,6 @@
-package model.DAOS;
+package model.daos;
 
-import model.Data.Espectaculo;
+import model.data.Espectaculo;
 
 public interface EspectaculoDAO extends DAO<Espectaculo,Long>{
 

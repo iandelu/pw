@@ -16,8 +16,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import model.Data.Usuario;
-import model.DAOS.UsuarioDAO;
+import model.daos.UsuarioDAO;
+import model.data.Usuario;
 
 /**
  *
@@ -74,7 +74,7 @@ public class MySQLUsuarioDAO implements UsuarioDAO{
 	}
 
 	@Override
-	public Usuario obtener(String id) {
+	public Usuario obtener(String email) {
 		// TODO Auto-generated method stub
 		return null;
 	}

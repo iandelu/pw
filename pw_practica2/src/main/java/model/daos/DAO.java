@@ -1,4 +1,4 @@
-package model.DAOS;
+package model.daos;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;

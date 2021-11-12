@@ -1,6 +1,6 @@
-package model.DAOS;
+package model.daos;
 
-import model.Data.Usuario;
+import model.data.Usuario;
 
 public interface UsuarioDAO extends DAO<Usuario, String>{
 

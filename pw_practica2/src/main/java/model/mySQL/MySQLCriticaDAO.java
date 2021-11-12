@@ -5,8 +5,8 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.util.List;
 
-import model.DAOS.CriticaDAO;
-import model.Data.Critica;
+import model.daos.CriticaDAO;
+import model.data.Critica;
 
 public class MySQLCriticaDAO implements CriticaDAO{
 

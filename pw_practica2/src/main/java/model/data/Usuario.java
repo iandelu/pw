@@ -1,4 +1,4 @@
-package model.Data;
+package model.data;
 
 import java.io.Serializable;
 
@@ -12,12 +12,13 @@ public class Usuario implements Serializable{
 	private String nickname;
 	private String password;
 	
-	public Usuario(String nombre, String apellidos, Email email, String nickname) {
+	public Usuario(String nombre, String apellidos, String email, String nickname, String password) throws Exception {
 		super();
 		this.nombre = nombre;
 		this.apellidos = apellidos;
-		this.email = email;
+		this.setEmail(email);
 		this.nickname = nickname;
+		this.password = password;
 	}
 	
 	
@@ -36,8 +37,9 @@ public class Usuario implements Serializable{
 	public String getEmail() {
 		return email.getEmail();
 	}
-	public void setEmail(Email email) {
-		this.email = email;
+	public void setEmail(String email) throws Exception {
+		Email nuevoEmail = new Email(email);
+		this.email = nuevoEmail;
 	}
 	public String getNickname() {
 		return nickname;

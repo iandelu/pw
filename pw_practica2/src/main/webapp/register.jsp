@@ -11,14 +11,15 @@
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 	<link rel="back" type="image/jpg" href="images/backgrounds/loginBack.jpg"/>
 	<link href="css/styles.css" rel="stylesheet" type="text/css"/>
+	<link href="css/main.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
     
 	<div class="limiter">
-		<div class="container col-lg-3">
+		<div class="container-login100">
 			<div class="wrap-registro">
 
-				<form class="registro-form validate-form text-center" method="post" action="/IW_/RegistrarController">
+				<form action="Principal.jsp" class="registro-form validate-form text-center" method="post" action="/IW_/RegistrarController">
 					<span class="login100-form-title">
 						Registro
 					</span>
@@ -69,16 +70,7 @@
 					</div>
 					
 					<div class="container-login100-form-btn">
-						<button class="login100-form-btn">
-							Aceptar
-						</button>
-					</div>
-                    
-                    <div class="text-center p-t-30">
-                        <a onclick="location.href='index.jsp'">
-                            Volver al inicio
-                            <i class="fa fa-long-arrow-left m-l-5" aria-hidden="true"></i>
-                        </a>
+					<input class="btn btn-danger btn-block" type="submit" name="action" value="Ingresar">
 				</form>
 			</div>
 		</div>

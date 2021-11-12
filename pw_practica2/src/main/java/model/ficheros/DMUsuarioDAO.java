@@ -9,8 +9,8 @@ import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
-import model.DAOS.UsuarioDAO;
-import model.Data.Usuario;
+import model.daos.UsuarioDAO;
+import model.data.Usuario;
 
 public class DMUsuarioDAO implements UsuarioDAO {
 	

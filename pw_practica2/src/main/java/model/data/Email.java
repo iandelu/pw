@@ -1,4 +1,4 @@
-package model.Data;
+package model.data;
 
 import java.io.Serializable;
 import java.util.regex.Pattern;

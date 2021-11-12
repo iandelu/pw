@@ -8,9 +8,9 @@ import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
-import model.DAOS.CriticaDAO;
-import model.Data.Critica;
-import model.Data.Valoracion;
+import model.daos.CriticaDAO;
+import model.data.Critica;
+import model.data.Valoracion;
 
 
 

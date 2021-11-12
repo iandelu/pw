@@ -5,8 +5,8 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.util.List;
 
-import model.DAOS.EspectaculoDAO;
-import model.Data.Espectaculo;
+import model.daos.EspectaculoDAO;
+import model.data.Espectaculo;
 
 public class MySQLEspectaculoDAO implements EspectaculoDAO{
 

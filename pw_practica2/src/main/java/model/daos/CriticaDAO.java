@@ -1,7 +1,7 @@
-package model.DAOS;
+package model.daos;
 
 
-import model.Data.Critica;
+import model.data.Critica;
 
 public interface CriticaDAO extends DAO<Critica, String>{
 

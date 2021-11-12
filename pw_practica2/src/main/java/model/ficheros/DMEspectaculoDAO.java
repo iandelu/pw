@@ -9,9 +9,9 @@ import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
-import model.DAOS.EspectaculoDAO;
-import model.Data.Espectaculo;
-import model.Data.Usuario;
+import model.daos.EspectaculoDAO;
+import model.data.Espectaculo;
+import model.data.Usuario;
 
 public class DMEspectaculoDAO implements EspectaculoDAO{
 
