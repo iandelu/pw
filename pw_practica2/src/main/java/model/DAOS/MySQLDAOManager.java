@@ -12,7 +12,6 @@ import model.mySQL.MySQLUsuarioDAO;
 
 public class MySQLDAOManager {
 
-	private static MySQLDAOManager instance = null;
 	private Connection conn;
 	
 	private MySQLUsuarioDAO usuarios = null;
@@ -25,16 +24,6 @@ public class MySQLDAOManager {
         conn = DriverManager.getConnection(url , username, password);
         
     }    
-	
-	
-	public static MySQLDAOManager getInstance() {
-		
-		if(instance == null) {
-			instance = new MySQLDAOManager();
-		}
-		
-		return instance;
-	}
 
 	public MySQLUsuarioDAO getUsuarios() {
 		if(usuarios == null){

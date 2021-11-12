@@ -13,6 +13,7 @@ public class EspectaculoPuntual extends Espectaculo{
 		super(idEspectaculo, titulo, descripcion, categorias);
 		// TODO Auto-generated constructor stub
 		this.funcionPuntual = new Funcion(fecha,hora,super.getLocalidadesDisponibles(),super.getTitulo());
+		this.setTipoEspectaculo("Puntual");
 	}
 
 	public Funcion getFuncionPuntual() {

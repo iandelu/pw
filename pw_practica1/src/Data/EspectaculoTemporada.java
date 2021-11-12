@@ -14,6 +14,7 @@ public class EspectaculoTemporada extends Espectaculo{
 		super(idEspectaculo, titulo, descripcion, categorias);
 		
 		this.añadirFuncion(fechaInicio, hora);
+		this.setTipoEspectaculo("Temporada");
 		this.diaWeek = fechaInicio.getDayOfWeek().name();
 		
 	}

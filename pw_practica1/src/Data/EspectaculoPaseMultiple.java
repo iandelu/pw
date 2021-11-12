@@ -11,6 +11,7 @@ public class EspectaculoPaseMultiple extends Espectaculo{
 	public EspectaculoPaseMultiple(String idEspectaculo, String titulo, String descripcion, ArrayList<String> categorias, LocalDate fecha, LocalTime tiempo) {
 		super(idEspectaculo, titulo, descripcion, categorias);
 		this.añadirFuncion(fecha, tiempo);
+		this.setTipoEspectaculo("PaseMultiple");
 		
 	}
 

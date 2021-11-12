@@ -50,7 +50,7 @@ public class gestorCriticas {
 			//no se pueden valorar tus propias criticas
 			return false;
 		}
-		critica.añadirValoracion(nuevaValoracion);
+		critica.anadirValoracion(nuevaValoracion);
 		return true;
 	}
 	

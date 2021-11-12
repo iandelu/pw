@@ -52,22 +52,6 @@
 						</span>
 					</div>
 
-					<div class="wrap-input100 validate-input" data-validate = "Debes introducir una fecha válida">
-						<input class="input100" type="date" name="fechanacimiento" placeholder="Fecha de Nacimiento">
-						<span class="focus-input100"></span>
-						<span class="symbol-input100">
-							<i class="fa fa-calendar" aria-hidden="true"></i>
-						</span>
-					</div>
-
-                    <div class="wrap-input100 validate-input" data-validate = "Debes introducir un nÃÂºmero válido">
-						<input class="input100" type="tel" name="telefono" placeholder="Número de Teléfono">
-						<span class="focus-input100"></span>
-						<span class="symbol-input100">
-							<i class="fa fa-phone" aria-hidden="true"></i>
-						</span>
-					</div>
-
                     <div class="wrap-input100 validate-input" data-validate = "Debes introducir un email válido: ejemplo@gmail.com">
 						<input class="input100" type="email" name="email" placeholder="Email">
 						<span class="focus-input100"></span>
