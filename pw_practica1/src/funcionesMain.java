@@ -49,7 +49,7 @@ public class funcionesMain {
 			Usuario usuarioNew = new Usuario(nombre,apellidos,emailnuevo,nickname);
 			gestorDAO.getUsuarios().insertar(usuarioNew);
 			return usuarioNew;
-		//}
+		//m}
 		
 	}
 	
