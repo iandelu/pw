@@ -10,6 +10,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import DAOS.UsuarioDAO;
+import Data.Critica;
+import Data.Espectaculo;
 import Data.Usuario;
 
 public class DMUsuarioDAO implements UsuarioDAO {
@@ -94,6 +96,18 @@ public class DMUsuarioDAO implements UsuarioDAO {
 		escribirUsuarios.writeObject(usuarios);
 		escribirUsuarios.close();
 		
+	}
+
+	@Override
+	public Critica obtenerCritica(int id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Espectaculo obtenerEspectaculo(int id) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
