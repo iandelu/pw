@@ -10,6 +10,7 @@ import java.util.List;
 
 import DAOS.CriticaDAO;
 import Data.Critica;
+import Data.Espectaculo;
 import Data.Valoracion;
 
 
@@ -74,7 +75,7 @@ public class DMCriticaDAO implements CriticaDAO{
 	public Critica obtener(String idCritica) {
 		
 		for(int i = 0; i <criticas.size(); i++) {
-			if(criticas.get(i).getIdCritica() == idCritica) {
+			if(criticas.get(i).getIdCritica().equals(idCritica)) {
 				return criticas.get(i);
 			}
 		}
@@ -99,6 +100,16 @@ public class DMCriticaDAO implements CriticaDAO{
 		
 	}
 
+	@Override
+	public Critica obtenerCritica(int id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
+	@Override
+	public Espectaculo obtenerEspectaculo(int id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 }
