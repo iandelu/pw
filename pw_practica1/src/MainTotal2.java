@@ -1,12 +1,15 @@
 
 import java.util.Scanner;
 
+import DAOS.DAOManager;
 import Data.Critica;
 import Data.Espectaculo;
 import Data.Usuario;
 
 import java.util.ArrayList;
 import java.util.Date;
+
+import business.gestorCriticas;
 import business.gestorEspectaculos;
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -16,6 +19,7 @@ import java.time.LocalTime;
 public class MainTotal2 
 {
 	static ArrayList<String> categorias;
+	static DAOManager gestorDAO = new DAOManager();
 	
 	public static void main(String args[])
 	{
@@ -73,14 +77,14 @@ public class MainTotal2
 					String idEspectaculo= entrada.nextLine();
 					
 					System.out.println("\nIntroduce la fecha y la hora del espectaculo:\n");
-					System.out.println("\nAño: ");
-					int año=entrada.nextInt();
+					System.out.println("\nAÃ±o: ");
+					int ano=entrada.nextInt();
 					System.out.println("\nMes: ");
 					int mes=entrada.nextInt();
 					System.out.println("\ndia: ");
 					int dia=entrada.nextInt();
 					
-					LocalDate fecha=LocalDate.of(año,mes,dia);//Guarda en fecha la fecha.
+					LocalDate fecha=LocalDate.of(ano,mes,dia);//Guarda en fecha la fecha.
 					
 					System.out.println("\nHora:");
 					int horas=entrada.nextInt();
@@ -119,29 +123,29 @@ public class MainTotal2
 					System.out.println("\nEspectaculo cambiado\n");
 					
 				case 4:
-					//. Contabilizar la venta de entradas para una sesiÃ³n de un espectÃ¡culo
+					//. Contabilizar la venta de entradas para una sesion de un espectaculo
 					System.out.println("Introduce el id del espectaculo del cual quieres ver las entradas vendidas:");
 					int idContabilizar=entrada.nextInt();
-					int numeroVentas = contabilizarEntradas(idContabilizar);//hacer funcion
+					int numeroVentas = gestorEspectaculos.contabilizarEntradas(idContabilizar);//hacer funcion
 					System.out.println("\n Se han vendido "+numeroVentas+" entradas.\n");
 					
 				case 5: 
-					//Consultar las localidades disponibles para un espectÃ¡culo, dada una fecha de representaciÃ³n
+					//Consultar las localidades disponibles para un especta¡culo, dada una fecha de representacion
 					System.out.println("Introduce la fecha de la que quieres saber las plazas restantes:\n");
-					System.out.println("\nAño: ");
-					int añoLocalidadesRestantes=entrada.nextInt();
+					System.out.println("\nAÃ±o: ");
+					int anoLocalidadesRestantes=entrada.nextInt();
 					System.out.println("\nMes: ");
 					int mesLocalidadesRestantes=entrada.nextInt();
 					System.out.println("\ndia: ");
 					int diaLocalidadesRestantes=entrada.nextInt();
 					
-					LocalDate fechaLocalidadesRestantes=LocalDate.of(añoLocalidadesRestantes,mesLocalidadesRestantes,diaLocalidadesRestantes);
-					int numeroLocalidadesRestantes=localidadesRestantes(fechaLocalidadesRestantes);//hacer funcion
+					LocalDate fechaLocalidadesRestantes=LocalDate.of(anoLocalidadesRestantes,mesLocalidadesRestantes,diaLocalidadesRestantes);
+					int numeroLocalidadesRestantes=gestorEspectaculos.localidadesRestantes(fechaLocalidadesRestantes);//hacer funcion
 					
 					System.out.println("\n Para esa fecha, quedan "+numeroLocalidadesRestantes+" entradas.\n");
 					
 				case 6:
-					//. Busqueda de espectÃ¡culos por tÃ­tulo o por categorÃ­a
+					//. Busqueda de espectaculos por titulo o por categoria
 					System.out.println("Inserta 1 para introducir titulo o 2 para introducir categoria:");
 					int eleccion=entrada.nextInt();
 					switch(eleccion)
@@ -149,32 +153,32 @@ public class MainTotal2
 					case 1:
 						System.out.println("\nInserta el titulo:");
 						String tituloBusqueda=entrada.nextLine();
-						busquedaTitulo(tituloBusqueda);//funcion en gestorEspectaculos
+						gestorEspectaculos.busquedaTitulo(tituloBusqueda);//funcion en gestorEspectaculos
 						break;
 						
 					case 2:
 						System.out.println("\nInserta la categoria:");
 						String categoriaBusqueda=entrada.nextLine();
-						busquedaCategoria(categoriaBusqueda);///funcion en gestorEspectaculos
+						gestorEspectaculos.busquedaCategoria(categoriaBusqueda);///funcion en gestorEspectaculos
 						break;
 					}
 					
 				case 7:
-					//BÃºsqueda de prÃ³ximos espectÃ¡culos con entradas disponibles, indicando o no una categorÃ­a especÃ­fica
-					espectaculosConEntradas();//hacer funcion
+					//Busqueda de proximos espectaculos con entradas disponibles, indicando o no una categoria especifica
+					gestorEspectaculos.espectaculosConEntradas();//hacer funcion
 					
 				case 8:
-					//Publicar una crÃ­tica para un espectÃ¡culo que ya se ha celebrado
+					//Publicar una critica para un espectaculo que ya se ha celebrado
 					System.out.println("Inserta la fecha en la que fue el espectaculo: ");
-					System.out.println("\nAÃ±o: ");
-					int añoEspectaculo=entrada.nextInt();
+					System.out.println("\nAnio: ");
+					int anoEspectaculo=entrada.nextInt();
 					System.out.println("\nMes: ");
 					int mesEspectaculo=entrada.nextInt();
 					System.out.println("\ndia: ");
 					int diaEspectaculo=entrada.nextInt();
 					
 					LocalDate fechaActual=LocalDate.now();
-					LocalDate fechaEspectaculo=LocalDate.of(añoEspectaculo,mesEspectaculo,diaEspectaculo);
+					LocalDate fechaEspectaculo=LocalDate.of(anoEspectaculo,mesEspectaculo,diaEspectaculo);
 					if(fechaEspectaculo.isBefore(fechaActual)) {
 						System.out.println("\nIntroduce el id de tu critica: ");
 						entrada= new Scanner(System.in);
@@ -187,13 +191,16 @@ public class MainTotal2
 						System.out.println("\nIntroduce el id del espectaculo: ");
 						entrada= new Scanner(System.in);
 						int id_espectaculo=entrada.nextInt();
-						//Aqui cuando nos dan el id, lo asociamos con el titulo,la descripcion y las categorias.FALTA FUNCION PARA ELLO
 						
-						String titulo=id.titulo(id_espectaculo);
-						String descripcion=id.descripcion(id_espectaculo);
-						ArrayList<String> categorias=id.categorias(id_espectaculo);
 						
-						Espectaculo espect= new Espectaculo(id_espectaculo, titulo,descripcion, categorias)   //***Id de espectaculo deberia ser int(numero)****
+						Espectaculo espectaculoAux = gestorDAO.getEspectaculos().obtenerEspectaculo(id_espectaculo);
+						
+						
+						String titulo=espectaculoAux.getTitulo();
+						String descripcion=espectaculoAux.getDescripcion();
+						ArrayList<String> categorias=espectaculoAux.getCategorias();
+						
+						Espectaculo espect= new Espectaculo(id_espectaculo, titulo,descripcion, categorias);   //***Id de espectaculo deberia ser int(numero)****
 						
 						System.out.println("\nIntroduce tu critica: ");
 						entrada= new Scanner(System.in);
@@ -203,7 +210,7 @@ public class MainTotal2
 						entrada= new Scanner(System.in);
 						int puntuacion=entrada.nextInt();
 						
-						crearCritica(id, tituloCritica , usr , espect, critica ,puntuacion);//funcion gestorCriticas
+						gestorCriticas.crearCritica(id, tituloCritica , usr , espect, critica ,puntuacion);//funcion gestorCriticas
 						break;
 					}
 					break;
@@ -211,7 +218,7 @@ public class MainTotal2
 				case 9:
 					
 					System.out.println("\n");
-					consultarCriticas();
+					gestorCriticas.consultarCriticas();
 					System.out.println("\n");
 					
 				case 10:
@@ -224,15 +231,17 @@ public class MainTotal2
 					entrada=new Scanner(System.in);
 					String nicknameBorrarCritica=entrada.nextLine();
 					
-					//Aqui hay que crear una funcion para que introduciendo un nickname nos den todos los datos del usuario.
+					Usuario usuarioAux = gestorDAO.getUsuarios().obtener(nicknameBorrarCritica);
 					
-					borraCritica(autorSupuesto, idBorrarCritica);
+					gestorCriticas.borraCritica(usuarioAux, idBorrarCritica);
 
 				case 11:
 					//.Valorar la utilidad de una critica publicada por otro usuario
 					System.out.println("\nIntroduce tu nickname: ");
 					entrada=new Scanner(System.in);
-					String nicknameUtilidad=entrada.nextLine();//FALTA LA FUNCION DE INTRODUCIR NICKNAME Y QUE DEVUELVA UN USUARIO
+					String nicknameUtilidad=entrada.nextLine();
+					
+					Usuario usuarioAux2 = gestorDAO.getUsuarios().obtener(nicknameUtilidad);
 					
 					System.out.println("\nIntroduce la puntuacion a la utilidad de la critica: ");
 					entrada= new Scanner(System.in);
@@ -240,9 +249,11 @@ public class MainTotal2
 					
 					System.out.println("\nIntroduce el id de la critica valorada: ");
 					entrada= new Scanner(System.in);
-					int idCriticaUtilidad=entrada.nextInt();
+					String idCriticaUtilidad=entrada.nextLine();
 					
-					votarUtilidad(usuarioNickname,valoracionUtilidad, idCriticaUtilidad);
+					Critica criticaAux = gestorDAO.getCriticas().obtener(idCriticaUtilidad);
+					
+					gestorCriticas.votarUtilidad(usuarioAux2,valoracionUtilidad, criticaAux);
 
 				case 12:
 					break;
