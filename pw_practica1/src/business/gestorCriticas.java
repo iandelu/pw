@@ -11,7 +11,7 @@ import DAOS.DAOManager;
 public class gestorCriticas {
 
 	private static gestorCriticas instance = null;
-	DAOManager gestor = new DAOManager();
+	static DAOManager gestor = new DAOManager();
 	
 	public static gestorCriticas getInstance() {
 		if(instance ==  null) {
@@ -20,18 +20,18 @@ public class gestorCriticas {
 		return instance;
 	}
 	
-	public void crearCritica(String idCritica, String titulo ,Usuario usuarioRegistrado, Espectaculo espectaculo, String texto, int puntuacion) {
+	public static void crearCritica(int idCritica, String titulo ,Usuario usuarioRegistrado, Espectaculo espectaculo, String texto, int puntuacion) {
 		
 		Critica nuevaCritica = new Critica( idCritica, titulo ,usuarioRegistrado,  espectaculo,  texto, puntuacion);
 		gestor.getCriticas().insertar(nuevaCritica);
 
 	}
 	
-	public ArrayList<Critica> consultarCriticas(){
+	public static ArrayList<Critica> consultarCriticas(){
 		return gestor.getCriticas().obtenerTodos();
 	}
 	
-	public boolean borraCritica(Usuario autorSupuesto, int idCritica) {
+	public static boolean borraCritica(Usuario autorSupuesto, int idCritica) {
 		
 		Critica criticaAuxiliar = gestor.getCriticas().obtenerCritica(idCritica);
 		if(criticaAuxiliar.getAutor() == autorSupuesto) {
@@ -43,9 +43,9 @@ public class gestorCriticas {
 		return false;
 	}
 	
-	public boolean votarUtilidad(Usuario usuarioRegistrado, int valoracionCritica, Critica critica) {
+	public static boolean votarUtilidad(Usuario usuarioRegistrado, int valoracionCritica, Critica critica) {
 		
-		Valoracion nuevaValoracion = new Valoracion(usuarioRegistrado, valoracionCritica, critica.getIdCritica());
+		Valoracion nuevaValoracion = new Valoracion(usuarioRegistrado, valoracionCritica, critica.getTexto());
 		if(usuarioRegistrado == critica.getAutor()) {
 			//no se pueden valorar tus propias criticas
 			return false;
