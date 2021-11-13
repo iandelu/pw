@@ -1,7 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<%@page import = "java.model.bean.UserBean" %>
-<jsp:useBean id = "JugadorBean" scope = "session" class = "UserBean"></jsp:useBean>
 <!DOCTYPE html>
 <html>
 	<head>
