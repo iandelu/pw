@@ -101,8 +101,8 @@ public class MainTotal
 					
 					System.out.println("\nIntroduce el id del espectaculo que desea criticar: ");
 					entrada= new Scanner(System.in);
-					String id_espectaculo=entrada.nextLine();
-					Espectaculo espectaculoSeleccionado = gestorDAO.getEspectaculos().obtener(id_espectaculo);
+					int id_espectaculo=entrada.nextInt();
+					Espectaculo espectaculoSeleccionado = gestorDAO.getEspectaculos().obtenerEspectaculo(id_espectaculo);
 					
 					System.out.println("\nIntroduce el titulo del espectaculo: ");
 					entrada= new Scanner(System.in);
