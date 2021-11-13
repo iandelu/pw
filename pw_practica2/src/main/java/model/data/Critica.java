@@ -5,6 +5,11 @@ import java.util.ArrayList;
 
 public class Critica implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
 	private String idCritica;
 	private Usuario autor;
 	private int puntuacion;

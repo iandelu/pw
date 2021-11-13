@@ -6,30 +6,26 @@ import java.util.ArrayList;
 
 public class EspectaculoTemporada extends Espectaculo{
 
-	private ArrayList<Funcion> funciones;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String diaWeek;
 	
 	public EspectaculoTemporada(Long idEspectaculo, String titulo, String descripcion, ArrayList<String> categorias,
 			LocalDate fechaInicio, LocalTime hora) {
 		super(idEspectaculo, titulo, descripcion, categorias);
 		
-		this.añadirFuncion(fechaInicio, hora);
+		this.addFuncion(fechaInicio, hora);
 		this.diaWeek = fechaInicio.getDayOfWeek().name();
+		super.setTipoEspectaculo("Temporada");
 		
 	}
 	
-	public void setFunciones(ArrayList<Funcion> funciones) {
-		this.funciones = funciones;
-	}
-	
-	public ArrayList<Funcion> getFunciones(){
-		return this.funciones;
-	}
-	
-	public void añadirFuncion(LocalDate fecha, LocalTime hora) {
+	public void addFuncion(LocalDate fecha, LocalTime hora) {
 		if(fecha.getDayOfWeek().name()==diaWeek) {
 			Funcion nuevaFuncion = new Funcion(fecha, hora, super.getLocalidadesDisponibles(),super.getTitulo());
-			funciones.add(nuevaFuncion);
+			super.getFunciones().add(nuevaFuncion);
 		}
 	}
 

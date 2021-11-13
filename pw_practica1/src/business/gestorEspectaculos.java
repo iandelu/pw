@@ -53,8 +53,7 @@ public class gestorEspectaculos {
 	}
 	
 	public int contabilizarEntradas(int idEspectaculo) {
-		return 1;//hayq ue recorrer todos los espectaculos y que nos de las entradas vendidas
-		
+				
 	}
 	
 	public void compraEntrada(String idEspectaculo, LocalDate Fecha) {

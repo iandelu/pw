@@ -5,6 +5,11 @@ import java.io.Serializable;
 public class Valoracion implements Serializable{
 	
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
 	private Usuario autor;
 	private int nota;
 	private String critica;

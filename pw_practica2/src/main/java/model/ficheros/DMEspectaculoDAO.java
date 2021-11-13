@@ -11,7 +11,6 @@ import java.util.List;
 
 import model.daos.EspectaculoDAO;
 import model.data.Espectaculo;
-import model.data.Usuario;
 
 public class DMEspectaculoDAO implements EspectaculoDAO{
 
@@ -79,6 +78,7 @@ ArrayList<Espectaculo> espectaculos = new ArrayList<Espectaculo>();
 		return null;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public void cargarFichero() throws FileNotFoundException, IOException, ClassNotFoundException {
 		

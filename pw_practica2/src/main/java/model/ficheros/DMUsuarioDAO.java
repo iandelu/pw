@@ -78,6 +78,7 @@ public class DMUsuarioDAO implements UsuarioDAO {
 		return null;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public void cargarFichero() throws FileNotFoundException, IOException, ClassNotFoundException {
 		

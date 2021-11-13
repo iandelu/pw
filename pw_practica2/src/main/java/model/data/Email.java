@@ -5,6 +5,10 @@ import java.util.regex.Pattern;
 
 public class Email implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String email;
 
 	public Email(String email) throws Exception {

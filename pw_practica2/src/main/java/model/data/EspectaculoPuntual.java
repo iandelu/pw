@@ -6,24 +6,20 @@ import java.util.ArrayList;
 
 public class EspectaculoPuntual extends Espectaculo{
 
-	private Funcion funcionPuntual;
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	public EspectaculoPuntual(Long idEspectaculo, String titulo,String descripcion, 
 					ArrayList<String> categorias, LocalDate fecha, LocalTime hora) {
 		super(idEspectaculo, titulo, descripcion, categorias);
 		// TODO Auto-generated constructor stub
-		this.funcionPuntual = new Funcion(fecha,hora,super.getLocalidadesDisponibles(),super.getTitulo());
+		Funcion funcionAux = new Funcion(fecha,hora,super.getLocalidadesDisponibles(),super.getTitulo());
+		super.addFuncion(funcionAux);
+		super.setTipoEspectaculo("Puntual");
 	}
-
-	public Funcion getFuncionPuntual() {
-		return funcionPuntual;
-	}
-
-	public void setFuncionPuntual(Funcion funcionPuntual) {
-		this.funcionPuntual = funcionPuntual;
-	}
-
 	
-
 	
 }

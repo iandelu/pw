@@ -1,16 +1,24 @@
 package model.data;
 
 import java.io.Serializable;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 
 public class Espectaculo implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
 	private Long idEspectaculo;
 	private String titulo;
 	private String descripcion;
 	private ArrayList<String> categorias;
 	private int localidadesDisponibles;
 	private String tipoEspectaculo;
+	private ArrayList<Funcion> funciones;
 	
 	
 	public Espectaculo(Long idEspectaculo, String titulo, String descripcion, ArrayList<String> categorias) {
@@ -57,5 +65,19 @@ public class Espectaculo implements Serializable{
 	public void setTipoEspectaculo(String tipoEspectaculo) {
 		this.tipoEspectaculo = tipoEspectaculo;
 	}
+	public ArrayList<Funcion> getFunciones() {
+		return funciones;
+	}
+	public void setFunciones(ArrayList<Funcion> funciones) {
+		this.funciones = funciones;
+	}
+	public void addFuncion(LocalDate fecha, LocalTime hora) {
+		Funcion nuevaFuncion = new Funcion(fecha, hora, getLocalidadesDisponibles(),getTitulo());
+		funciones.add(nuevaFuncion);
+	}
+	public void addFuncion(Funcion funcion) {
+		funciones.add(funcion);
+	}
+	
 	
 }

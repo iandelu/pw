@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<jsp:useBean id="CustomerBean" scope="session" class="es.uco.pw.p2.display.CustomerBean"></jsp:useBean>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -11,11 +12,23 @@
 	</head>
 	<body>
 	
+	
+		<% if (CustomerBean.getLoginAttempts() >= 3) {
+    		response.sendRedirect("http://www.uco.es/");
+    	}%>
+    	<% if (CustomerBean.getEmail() != null) { %>
+    		<p>Bienvenido <jsp:getProperty property="firstname" name="CustomerBean"/> <jsp:getProperty property="lastname" name="CustomerBean"/>
+    		(<jsp:getProperty property="email" name="CustomerBean"/>)
+    		</p>
+    		<br/>
+    		<button type="button" onclick="window.location.href='../controller/user/logoutController.jsp';">Cerrar sesion</button>
+    		<button type="button" onclick="window.location.href='../view/user/modifyView.jsp';">Modificar</button>
+    	<% } else { %>
 		<div class="limiter">
 		<div class="container-login100">
 			<div class="wrap-registro">
 
-				<form action="Principal.jsp" class="registro-form validate-form text-center" method="post" action="/IW_/RegistrarController">
+				<form action="../controller/user/loginController" class="registro-form validate-form text-center" method="post" action="/IW_/RegistrarController">
 					<span class="login100-form-title">
 						Login
 					</span>
@@ -49,6 +62,11 @@
 			</div>
 		</div>
 	</div>
+	<% } %>
+	     <br/>
+     <% if (request.getParameter("msg") != null) { %>
+  		<p><%= request.getParameter("msg") %>. Le quedan <%= 3 - CustomerBean.getLoginAttempts() %> intentos. </p>
+     <% } %>
 	
 	
 		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

@@ -6,11 +6,8 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
-import java.util.List;
-
 import model.daos.CriticaDAO;
 import model.data.Critica;
-import model.data.Valoracion;
 
 
 
@@ -81,6 +78,7 @@ public class DMCriticaDAO implements CriticaDAO{
 		return null;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public void cargarFichero() throws FileNotFoundException, IOException, ClassNotFoundException {
 		
