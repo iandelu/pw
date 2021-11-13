@@ -28,7 +28,7 @@ public class gestorEspectaculos {
 	public static void darAltaEspectaculo(String idEspectaculo, LocalDate fecha, LocalTime time) {
 	
 		Espectaculo nuevoEspectaculo = factoria.crearEspectaculo(idEspectaculo, fecha, time);
-		//aÃ±adir espectaculo a los ficheros
+		//aniadir espectaculo a los ficheros
 		
 	}
 	
@@ -43,8 +43,8 @@ public class gestorEspectaculos {
 		
 	}
 	
-	public static void actualizarDatos(String idEspectaculo, String tituloNuevo, String descripcionNueva, ArrayList<String> Categorias) {
-		Espectaculo nuevoEspectaculo = gestor.getEspectaculos().obtener(idEspectaculo);
+	public static void actualizarDatos(int idEspectaculo, String tituloNuevo, String descripcionNueva, ArrayList<String> Categorias) {
+		Espectaculo nuevoEspectaculo = gestor.getEspectaculos().obtenerEspectaculo(idEspectaculo);
 		nuevoEspectaculo.setLocalidadesDisponibles(0);
 		nuevoEspectaculo.setCategorias(Categorias );
 		nuevoEspectaculo.setTitulo(tituloNuevo);
@@ -52,8 +52,9 @@ public class gestorEspectaculos {
 		
 	}
 	
-	public int contabilizarEntradas(int idEspectaculo) {
-				
+	public static int contabilizarEntradas(int idEspectaculo) {
+		return 1;//hayq ue recorrer todos los espectaculos y que nos de las entradas vendidas
+		
 	}
 	
 	public void compraEntrada(String idEspectaculo, LocalDate Fecha) {
@@ -62,11 +63,11 @@ public class gestorEspectaculos {
 		
 	}
 	
-	public int localidadesRestantes(LocalDate fecha) {
+	public static int localidadesRestantes(LocalDate fecha) {
 		return 1;//Funcion que al darle una fecha te devuelva las localidades restantes que quedan del espectaculo de ese dia
 	}
 	
-	public ArrayList<Espectaculo> busquedaTitulo(String tituloEspectaculo) {
+	public static ArrayList<Espectaculo> busquedaTitulo(String tituloEspectaculo) {
 		ArrayList<Espectaculo> listaEspectaculos = new ArrayList<Espectaculo>();
 		ArrayList<Espectaculo> todos = (ArrayList<Espectaculo>) gestor.getEspectaculos().obtenerTodos();
 		for(Espectaculo e:todos) {
@@ -81,7 +82,7 @@ public class gestorEspectaculos {
 		
 	}
 	
-	public ArrayList<Espectaculo> busquedaCategoria(String Categoria) {
+	public static ArrayList<Espectaculo> busquedaCategoria(String Categoria) {
 		ArrayList<Espectaculo> listaEspectaculos = new ArrayList<Espectaculo>();
 		ArrayList<Espectaculo> todos = (ArrayList<Espectaculo>) gestor.getEspectaculos().obtenerTodos();
 		for(Espectaculo e:todos) {
@@ -97,7 +98,7 @@ public class gestorEspectaculos {
 	}
 	
 
-	public void espectaculosConEntradas() {
+	public static void espectaculosConEntradas() {
 		//Buscar en la lista donde hemos guardado todos los espectaculos dados de alta, los que las localidadesrestantes>0, y mostrarlos en pantalla.
 	}
 	
