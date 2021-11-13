@@ -10,7 +10,8 @@
 		Usuario user = new Usuario(request.getServletContext());
 		String email = request.getParameter("email");
 		String password = request.getParameter("password");
-		UserDTO user = userDAO.queryByEmail(email);
+		MySQLDAOManager gestor = new MySQLDAOManager();
+		Usuario user = gestor.getUsuarios().obtener(email);
 		
 		boolean loginSuccessful = false;
 		if (user != null && user.getPassword().equals(password)){

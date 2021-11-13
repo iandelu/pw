@@ -8,6 +8,7 @@ public class Usuario implements Serializable{
 	private String apellidos;
 	private Email email;
 	private String nickname;
+	private String tipoUsuario;
 	
 	public Usuario(String nombre, String apellidos, Email email, String nickname) {
 		super();
@@ -15,6 +16,7 @@ public class Usuario implements Serializable{
 		this.apellidos = apellidos;
 		this.email = email;
 		this.nickname = nickname;
+		this.tipoUsuario  = "Espectador";
 	}
 	
 	
@@ -42,6 +44,13 @@ public class Usuario implements Serializable{
 	public void setNickname(String nickname) {
 		this.nickname = nickname;
 	}
+	public String getTipoUsuario() {
+		return tipoUsuario;
+	}
+	public void setTipoUsuario(String tipoUsuario) {
+		this.tipoUsuario = tipoUsuario;
+	}
+
 
 	@Override
 	public String toString() {

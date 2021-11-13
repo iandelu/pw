@@ -7,7 +7,6 @@ public class UserBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
-	private int id = -1;
 	private String email = null;
 	private String nombre = null;
 	private String apellidos = null;
