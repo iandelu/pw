@@ -72,10 +72,10 @@ public class DMCriticaDAO implements CriticaDAO{
 	}
 	
 	@Override
-	public Critica obtener(String idCritica) {
+	public Critica obtenerCritica(int idCritica) {
 		
 		for(int i = 0; i <criticas.size(); i++) {
-			if(criticas.get(i).getIdCritica().equals(idCritica)) {
+			if(criticas.get(i).getIdCritica()==idCritica) {
 				return criticas.get(i);
 			}
 		}
@@ -101,7 +101,7 @@ public class DMCriticaDAO implements CriticaDAO{
 	}
 
 	@Override
-	public Critica obtenerCritica(int id) {
+	public Critica obtener(String id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
