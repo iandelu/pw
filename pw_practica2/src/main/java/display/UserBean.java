@@ -1,4 +1,4 @@
-package model.bean;
+package display;
 
 import java.io.Serializable;
 
@@ -7,6 +7,7 @@ public class UserBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
+	private Long id;
 	private String email = null;
 	private String nombre = null;
 	private String apellidos = null;
@@ -14,12 +15,12 @@ public class UserBean implements Serializable {
 	private int loginAttempts = 0;
 
 
-	public int getID() {
+	public Long getID() {
 		return id;
 	}
 	
 
-	public void setID(int id) {
+	public void setID(Long id) {
 		this.id = id;
 	}
 	

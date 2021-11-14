@@ -17,6 +17,7 @@ public class Usuario implements Serializable{
 	private Email email;
 	private String nickname;
 	private String password;
+	private String tipoUsuario;
 	
 	public Usuario(String nombre, String apellidos, String email, String nickname, String password) throws Exception {
 		super();
@@ -26,6 +27,7 @@ public class Usuario implements Serializable{
 		this.nickname = nickname;
 		this.password = password;
 		this.idUsuario = (long)-1;
+		this.tipoUsuario = "ESPECTADOR";
 	}
 	
 	
@@ -73,6 +75,14 @@ public class Usuario implements Serializable{
 	}
 	public void setIdUsuario(Long idUsuario) {
 		this.idUsuario = idUsuario;
+	}
+
+	public String getTipoUsuario() {
+		return tipoUsuario;
+	}
+
+	public void setTipoUsuario(String tipoUsuario) {
+		this.tipoUsuario = tipoUsuario;
 	}
 
 	

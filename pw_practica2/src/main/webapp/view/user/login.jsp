@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<jsp:useBean id="CustomerBean" scope="session" class="es.uco.pw.p2.display.CustomerBean"></jsp:useBean>
+<jsp:useBean id="UserBean" scope="session" class="display.UserBean"></jsp:useBean>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -13,10 +13,10 @@
 	<body>
 	
 	
-		<% if (CustomerBean.getLoginAttempts() >= 3) {
+		<% if (UserBean.getLoginAttempts() >= 3) {
     		response.sendRedirect("http://www.uco.es/");
     	}%>
-    	<% if (CustomerBean.getEmail() != null) { %>
+    	<% if (UserBean.getEmail() != null) { %>
     		<p>Bienvenido <jsp:getProperty property="firstname" name="CustomerBean"/> <jsp:getProperty property="lastname" name="CustomerBean"/>
     		(<jsp:getProperty property="email" name="CustomerBean"/>)
     		</p>
@@ -65,7 +65,7 @@
 	<% } %>
 	     <br/>
      <% if (request.getParameter("msg") != null) { %>
-  		<p><%= request.getParameter("msg") %>. Le quedan <%= 3 - CustomerBean.getLoginAttempts() %> intentos. </p>
+  		<p><%= request.getParameter("msg") %>. Le quedan <%= 3 - UserBean.getLoginAttempts() %> intentos. </p>
      <% } %>
 	
 	

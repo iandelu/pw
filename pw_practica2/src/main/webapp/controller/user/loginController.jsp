@@ -1,9 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="es.uco.pw.p2.business.Usuario,es.uco.pw.p2.data.UserDAO" %>
-<jsp:useBean id="CustomerBean" scope="session" class="es.uco.pw.p2.display.CustomerBean"></jsp:useBean>
+<jsp:useBean id="UserBean" scope="session" class="display.UserBean,model.data.Usuario"></jsp:useBean>
 <%
-	if (CustomerBean.getLoginAttempts() >= 3) {
+	if (UserBean.getLoginAttempts() >= 3) {
 		response.sendRedirect("http://www.uco.es/");
 	}
 	else{
@@ -18,20 +17,20 @@
 			loginSuccessful = true;
 		}
 		
-		if (!loginSuccessful && CustomerBean.getLoginAttempts() >= 2) {
-			CustomerBean.setLoginAttempts(CustomerBean.getLoginAttempts() + 1);
+		if (!loginSuccessful && UserBean.getLoginAttempts() >= 2) {
+			UserBean.setLoginAttempts(UserBean.getLoginAttempts() + 1);
 			response.sendRedirect("http://www.uco.es/");
 		}
 		else {
 			if (loginSuccessful) {
-				CustomerBean.setID(user.getID());
-				CustomerBean.setEmail(user.getEmail());
-				CustomerBean.setFirstname(user.getFirstname());
-				CustomerBean.setLastname(user.getLastname());
+				UserBean.setID(user.getID());
+				UserBean.setEmail(user.getEmail());
+				UserBean.setFirstname(user.getFirstname());
+				UserBean.setLastname(user.getLastname());
 				response.sendRedirect("/P2_MVC/mvc/view/loginView.jsp");
 			}
 			else {
-				CustomerBean.setLoginAttempts(CustomerBean.getLoginAttempts() + 1); %>
+				UserBean.setLoginAttempts(UserBean.getLoginAttempts() + 1); %>
 				<jsp:forward page="/mvc/view/loginView.jsp">
 					<jsp:param value="Login incorrecto" name="msg"/>
 				</jsp:forward>
