@@ -1,4 +1,4 @@
-<jsp:useBean id="customerBean" scope="session" class="display.CustomerBean"></jsp:useBean>
+<jsp:useBean id="customerBean" scope="session" class="main.java.model.display.UserBean"></jsp:useBean>
 <!DOCTYPE html>
 
 

@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="es.uco.pw.p2.business.UserDTO,es.uco.pw.p2.data.UserDAO" %>
+<%@ page import="es.uco.pw.p2.business.Usuario,es.uco.pw.p2.data.UserDAO" %>
 <jsp:useBean id="CustomerBean" scope="session" class="es.uco.pw.p2.display.CustomerBean"></jsp:useBean>
 <%
 	if (CustomerBean.getLoginAttempts() >= 3) {

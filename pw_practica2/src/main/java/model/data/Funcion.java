@@ -5,17 +5,17 @@ import java.time.LocalTime;
 
 public class Funcion {
 
+	private Long idFuncion;
 	private LocalDate fecha;
 	private LocalTime hora;
 	private int localidadesRestantes;
-	private String idFuncion;
 	
-	public Funcion(LocalDate fecha, LocalTime hora, int localidadesDisponibles,String nombre) {
+	public Funcion(Long idFuncion, LocalDate fecha, LocalTime hora, int localidadesDisponibles,String nombre) {
 		super();
 		this.fecha = fecha;
 		this.hora = hora;
 		this.localidadesRestantes = localidadesDisponibles;
-		this.idFuncion = fecha.toString()+"-Espectaculo-"+nombre;
+		this.idFuncion = idFuncion;
 	}
 
 	public LocalDate getFecha() {

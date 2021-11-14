@@ -72,7 +72,7 @@ public class Espectaculo implements Serializable{
 		this.funciones = funciones;
 	}
 	public void addFuncion(LocalDate fecha, LocalTime hora) {
-		Funcion nuevaFuncion = new Funcion(fecha, hora, getLocalidadesDisponibles(),getTitulo());
+		Funcion nuevaFuncion = new Funcion(fecha, hora, getLocalidadesDisponibles(),(Long)-1);
 		funciones.add(nuevaFuncion);
 	}
 	public void addFuncion(Funcion funcion) {

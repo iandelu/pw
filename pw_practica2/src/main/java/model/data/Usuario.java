@@ -11,6 +11,7 @@ public class Usuario implements Serializable{
 	 */
 	private static final long serialVersionUID = 1L;
 	
+	private Long idUsuario;
 	private String nombre;
 	private String apellidos;
 	private Email email;
@@ -24,6 +25,7 @@ public class Usuario implements Serializable{
 		this.setEmail(email);
 		this.nickname = nickname;
 		this.password = password;
+		this.idUsuario = (long)-1;
 	}
 	
 	
@@ -66,8 +68,13 @@ public class Usuario implements Serializable{
 				+ ", password=" + password + "]";
 	}
 
-	
-	
+	public Long getIdUsuario() {
+		return idUsuario;
+	}
+	public void setIdUsuario(Long idUsuario) {
+		this.idUsuario = idUsuario;
+	}
+
 	
 		
 }
