@@ -12,6 +12,7 @@ public class Critica implements Serializable {
 	
 	private Long idCritica;
 	private String autor;
+	private String titulo;
 	private int puntuacion;
 	private Long espectaculo;
 	private String texto;
@@ -26,6 +27,13 @@ public class Critica implements Serializable {
 		this.texto = texto;
 	}
 	
+	
+	public String getTitulo() {
+		return titulo;
+	}
+	public void setTitulo(String titulo) {
+		this.titulo = titulo;
+	}
 	public Long getIdCritica() {
 		return idCritica;
 	}

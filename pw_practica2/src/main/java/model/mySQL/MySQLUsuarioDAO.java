@@ -35,10 +35,10 @@ public class MySQLUsuarioDAO implements UsuarioDAO{
     */
     
 	final String INSERT = "INSERT INTO Usuarios( nickname, nombre, email, apellidos, contraseña) VALUES (?,?,?,?,?)"; 
-	final String UPDATE = "UPDATE Usuarios SET usuario = ? , nombre = ?, email = ?, apellidos = ?, contraseña = ? WHERE email = ?";
+	final String UPDATE = "UPDATE Usuarios SET nickname = ? , nombre = ?, email = ?, apellidos = ?, contraseña = ? WHERE email = ?";
     final String DELETE = "DELETE FROM Usuarios WHERE email = ?";
-    final String GETALL = "SELECT usuario, nombre, email, apellidos,contraseña FROM Usuarios";
-    final String GETONE = "SELECT * FROM Usuarios WHERE email = ?";
+    final String GETALL = "SELECT usuario, nombre, email, apellidos, contraseña FROM Usuarios";
+    final String GETONE = "SELECT usuario, nombre, email, apellidos, contraseña FROM Usuarios WHERE email = ?";
     
     
     private Connection conn;
@@ -103,7 +103,8 @@ public class MySQLUsuarioDAO implements UsuarioDAO{
             stat.setString(2, u.getNombre());
             stat.setString(3, u.getEmail());
             stat.setString(4, u.getApellidos());
-            stat.setString(6, u.getPassword());
+            stat.setString(5, u.getPassword());
+            stat.setString(6, u.getEmail());
             
             
             if(stat.executeUpdate() == 0){
@@ -163,14 +164,15 @@ public class MySQLUsuarioDAO implements UsuarioDAO{
 		
 	private Usuario convertir(ResultSet rs) throws Exception{
         
-        String usuario = rs.getString("usuario");
         String nombre = rs.getString("nombre");
         String apellidos = rs.getString("apellidos");
         String nickname = rs.getString("nickname");
         String contraseña = rs.getString("contraseña");
         String email = rs.getString("email");
+        String tipo = rs.getString("tipo");
         
         Usuario j = new Usuario(nombre,apellidos,email,nickname,contraseña);
+        j.setTipoUsuario(tipo);
         
         return j;
         

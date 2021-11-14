@@ -22,13 +22,12 @@ public class MySQLCriticaDAO implements CriticaDAO{
 	    *   ------------------------------------_
 	    */
 	    
-	    final String INSERT = "INSERT INTO jugadores( usuario, nombre, email, apellidos, fechaNacimiento, contraseña,telefono, valoracionMedia) VALUES (?,?,?,?,?,?,?,?)"; 
-	    final String UPDATE = "UPDATE jugadores SET usuario = ? , nombre = ?, email = ?, apellidos = ?, fechaNacimiento = ?, contraseña = ?,telefono = ? WHERE email = ?";
-	    final String DELETE = "DELETE FROM jugadores WHERE idJugador = ?";
-	    final String GETALL = "SELECT idJugador, usuario, nombre, email, apellidos, fechaNacimiento, contraseña,telefono, valoracionMedia FROM jugadores";
-	    final String GETONE = "SELECT * FROM jugadores WHERE idJugador = ?";
-	    final String BUSCARPOREMAIL = "SELECT * FROM jugadores WHERE email = ?";
-	    
+	    final String INSERT = "INSERT INTO Critica( id, autor, titulo, puntuacion, texto, espectáculo) VALUES (?,?,?,?,?,?)"; 
+	    final String UPDATE = "UPDATE Critica SET id = ? , autor = ?, titulo = ?, puntuacion = ?, texto = ?, espectaculo = ? WHERE id = ?";
+	    final String DELETE = "DELETE FROM Critica WHERE id = ?";
+	    final String GETALL = "SELECT id, autor, titulo, puntuacion, texto, espectaculo FROM Critica";
+	    final String GETONE = "SELECT id, autor, titulo, puntuacion, texto, espectaculo FROM Critica WHERE id = ?";
+	        
 	    
 	    private Connection conn;
 	    
@@ -49,9 +48,11 @@ public class MySQLCriticaDAO implements CriticaDAO{
             
             stat.setLong(1, u.getIdCritica());
             stat.setString(2, u.getAutor());
-            stat.setInt(3, u.getPuntuacion());
-            stat.setLong(4, u.getEspectaculo());
+            stat.setString(3, u.getTitulo());
+            stat.setInt(4, u.getPuntuacion());
             stat.setString(5, u.getTexto());
+            stat.setLong(6, u.getEspectaculo());
+            
             
             if(stat.executeUpdate() == 0){
                 throw new DAOException("Puede que no se haya guardado.");
@@ -92,6 +93,7 @@ PreparedStatement stat = null;
             stat.setInt(3, u.getPuntuacion());
             stat.setLong(4, u.getEspectaculo());
             stat.setString(5, u.getTexto());
+            stat.setLong(6, u.getIdCritica());
             
             if(stat.executeUpdate() == 0){
                 throw new DAOException("Puede que no se haya guardado.");
@@ -121,14 +123,14 @@ PreparedStatement stat = null;
 	}
 
 	@Override
-	public void eliminar(Critica u) {
+	public void eliminar(Critica u) throws DAOException {
 
 		PreparedStatement stat = null;
         
         try{
             
-            stat = conn.prepareStatement(DELETE);
-            stat.setString(1, u.getIdCritica());
+            stat = conn.prepareStatement(DELETE); 
+            stat.setLong(1, u.getIdCritica());
 
             if(stat.executeUpdate() == 0){
                 throw new DAOException("Puede que no se haya guardado.");
@@ -154,10 +156,12 @@ PreparedStatement stat = null;
         Long idCritica = rs.getLong("id");
         String autor = rs.getString("autor");
         int puntuacion = rs.getInt("puntuacion");
+        String titulo = rs.getString("titulo");
         Long espectaculo = rs.getLong("espectaculo");
         String texto = rs.getString("texto");
         
         Critica c = new Critica(idCritica,autor,espectaculo,texto,puntuacion);
+        c.setTitulo(titulo);
         
         return c;
         

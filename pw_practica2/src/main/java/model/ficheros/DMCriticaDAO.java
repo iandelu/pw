@@ -68,7 +68,7 @@ public class DMCriticaDAO implements CriticaDAO{
 	}
 	
 	@Override
-	public Critica obtener(String idCritica) {
+	public Critica obtener(Long idCritica) {
 		
 		for(int i = 0; i <criticas.size(); i++) {
 			if(criticas.get(i).getIdCritica() == idCritica) {

@@ -11,22 +11,22 @@ public class Valoracion implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	private Long idValoracion;
-	private Usuario autor;
+	private String autor;
 	private int nota;
 	private Long critica;
 	
-	public Valoracion(Usuario autor, int nota, Long critica) {
+	public Valoracion(String autor, int nota, Long critica) {
 		super();
 		this.autor = autor;
 		this.nota = nota;
 		this.critica = critica;
 	}
 
-	public Usuario getAutor() {
+	public String getAutor() {
 		return autor;
 	}
 
-	public void setAutor(Usuario autor) {
+	public void setAutor(String autor) {
 		this.autor = autor;
 	}
 
