@@ -1,41 +1,32 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+pageEncoding="UTF-8"%>
 <jsp:useBean id="UserBean" scope="session" class="display.UserBean"></jsp:useBean>
 <%@ page import="model.data.Usuario,model.daos.MySQLDAOManager" %>
 <%
 	String firstname = request.getParameter("firstname");
 	String lastname = request.getParameter("lastname");
-	String email = request.getParameter("email");
 	String password = request.getParameter("password");
-	String birthdateStr = request.getParameter("birthdate");
+	String email = request.getParameter("email");
+	String nickname = request.getParameter("nickname");
 	MySQLDAOManager gestor = new MySQLDAOManager();
+	Usuario user = gestor.getUsuarios().obtener(email);
+
+if (firstname == null || lastname == null || password == null || email == null || firstname == "" || lastname == "" || password == "" || email == ""){
+	response.sendRedirect("errorPage.jsp?msg=Uno o mas campos estaban incompletos");
+}
+else{
 	
-	if (firstname == null || lastname == null || email == null || password == null || birthdateStr == null || firstname == "" || lastname == "" || email == "" || password == "" || birthdateStr == "") {
-		response.sendRedirect("errorPage.jsp?msg=Uno o mas campos de registro estaban incompletos");
-	}
-	else{
-		
-		Usuario user = gestor.getUsuarios().obtener(request.getParameter("email"));
-		
-		if (UserBean.getEmail() != null) {
-			response.sendRedirect("errorPage.jsp?msg=Debe cerrar la sesion antes de registrar un usuario");
+	if (UserBean.getEmail() != null) {
+		try{
+			Long id = user.getIdUsuario();
+			Usuario userNuevo = new Usuario(firstname,lastname, UserBean.getEmail(), nickname, password);
+			gestor.getUsuarios().modificar(user);
+		} catch (Exception e){
+			e.printStackTrace();
 		}
-		else {		
-			if (user != null) {
-				response.sendRedirect("errorPage.jsp?msg=Ya existe un usuario con ese email");
-			}
-			else {
-				try {
-					LocalDate birthdate = LocalDate.parse(birthdateStr, formatter);
-					Usuario = new Usuario(-1, email, password, firstname, lastname, birthdate);
-					gestor.getUsuarios().insertar(user);
-				} catch(Exception e){
-					e.printStackTrace();
-				}
-				
-				
-				response.sendRedirect("view/login.jsp");
-			}
-		}
+		
 	}
-	
+	response.sendRedirect("view/home.jsp");
+}
 %>

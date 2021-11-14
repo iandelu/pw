@@ -10,6 +10,7 @@ public class Valoracion implements Serializable{
 	 */
 	private static final long serialVersionUID = 1L;
 	
+	private Long idValoracion;
 	private Usuario autor;
 	private int nota;
 	private Long critica;
@@ -44,6 +45,23 @@ public class Valoracion implements Serializable{
 	public void setEspectaculo(Long critica) {
 		this.critica = critica;
 	}
+
+	public Long getIdValoracion() {
+		return idValoracion;
+	}
+
+	public void setIdValoracion(Long idValoracion) {
+		this.idValoracion = idValoracion;
+	}
+
+	public Long getCritica() {
+		return critica;
+	}
+
+	public void setCritica(Long critica) {
+		this.critica = critica;
+	}
+	
 	
 	
 	
