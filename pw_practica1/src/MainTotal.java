@@ -163,7 +163,8 @@ public class MainTotal
 					
 				default:
 					System.out.println("Has elegido salir del programa, adios\n");
-					break;	
+					System.exit(0);
+					//break;	
 			}
 		}
 		//FALTA comprobar que las funciones 3,4,5 estan bien hechas	
