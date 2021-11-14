@@ -7,7 +7,7 @@
 	String lastname = request.getParameter("lastname");
 	String password = request.getParameter("password");
 	String email = request.getParameter("email");
-	String nickname = request.getParameter("nickname")
+	String nickname = request.getParameter("nickname");
 	MySQLDAOManager gestor = new MySQLDAOManager();
 	Usuario user = gestor.getUsuarios().obtener(email);
 	

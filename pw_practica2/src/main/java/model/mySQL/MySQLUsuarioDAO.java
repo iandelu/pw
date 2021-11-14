@@ -237,6 +237,7 @@ public class MySQLUsuarioDAO implements UsuarioDAO{
 			try{
 			       
 			       stat = conn.prepareStatement(GETONE);
+			       stat.setString(1, email);
 			       rs = stat.executeQuery();
 			       if(rs.next()){
 			           

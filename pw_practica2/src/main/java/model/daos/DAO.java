@@ -6,6 +6,8 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
 
+import model.data.Critica;
+
 public interface DAO<T, K> {
 	
 	void insertar(T j) throws DAOException;
@@ -21,6 +23,8 @@ public interface DAO<T, K> {
     void cargarFichero() throws FileNotFoundException, IOException, ClassNotFoundException;
     
     void guardarFichero() throws FileNotFoundException, IOException;
+
+
 
 	//Junta obtener(LocalDate fecha, LocalTime hora);
 }

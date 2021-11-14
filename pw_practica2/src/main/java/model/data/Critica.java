@@ -13,12 +13,12 @@ public class Critica implements Serializable {
 	private Long idCritica;
 	private String autor;
 	private int puntuacion;
-	private Espectaculo espectaculo;
+	private Long espectaculo;
 	private String texto;
 	private ArrayList<Valoracion> valoraciones;
 	
 	
-	public Critica(Long idCritica, String autor, Espectaculo espectaculo, String texto, int puntuacion) {
+	public Critica(Long idCritica, String autor, Long espectaculo, String texto, int puntuacion) {
 		super();
 		this.idCritica = idCritica;
 		this.autor = autor;
@@ -38,10 +38,10 @@ public class Critica implements Serializable {
 	public void setAutor(String autor) {
 		this.autor = autor;
 	}
-	public Espectaculo getEspectaculo() {
+	public Long getEspectaculo() {
 		return espectaculo;
 	}
-	public void setEspectaculo(Espectaculo espectaculo) {
+	public void setEspectaculo(Long espectaculo) {
 		this.espectaculo = espectaculo;
 	}
 	public String getTexto() {

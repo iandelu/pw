@@ -18,8 +18,12 @@ public class MySQLDAOManager {
 	private MySQLCriticaDAO criticas = null;
 	private MySQLEspectaculoDAO espectaculos;
 
-	public MySQLDAOManager(String host, String username, String password , String database) throws SQLException{
+	public MySQLDAOManager() throws SQLException{
         
+		String host = null;
+		String username = null;
+		String password = null;
+		String database = null;
         String url = "jdbc:mysql://" + host + "/" + database;
         conn = DriverManager.getConnection(url , username, password);
         
