@@ -1,4 +1,4 @@
-package model.data;
+  package model.data;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -11,14 +11,14 @@ public class Critica implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	private Long idCritica;
-	private Usuario autor;
+	private String autor;
 	private int puntuacion;
 	private Espectaculo espectaculo;
 	private String texto;
 	private ArrayList<Valoracion> valoraciones;
 	
 	
-	public Critica(Long idCritica, Usuario autor, Espectaculo espectaculo, String texto, int puntuacion) {
+	public Critica(Long idCritica, String autor, Espectaculo espectaculo, String texto, int puntuacion) {
 		super();
 		this.idCritica = idCritica;
 		this.autor = autor;
@@ -32,10 +32,10 @@ public class Critica implements Serializable {
 	public void setIdCritica(Long idCritica) {
 		this.idCritica = idCritica;
 	}
-	public Usuario getAutor() {
+	public String getAutor() {
 		return autor;
 	}
-	public void setAutor(Usuario autor) {
+	public void setAutor(String autor) {
 		this.autor = autor;
 	}
 	public Espectaculo getEspectaculo() {
