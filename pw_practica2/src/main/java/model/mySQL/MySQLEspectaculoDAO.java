@@ -17,8 +17,8 @@ public class MySQLEspectaculoDAO implements EspectaculoDAO{
 	    *   ------------------------------------_
 	    */
 	    
-	    final String INSERT = "INSERT INTO jugadores( usuario, nombre, email, apellidos, fechaNacimiento, contraseña,telefono, valoracionMedia) VALUES (?,?,?,?,?,?,?,?)"; 
-	    final String UPDATE = "UPDATE jugadores SET usuario = ? , nombre = ?, email = ?, apellidos = ?, fechaNacimiento = ?, contraseña = ?,telefono = ? WHERE email = ?";
+	    final String INSERT = "INSERT INTO Usuarios( nickname, nombre, email, apellidos, contraseña) VALUES (?,?,?,?,?)"; 
+	    final String UPDATE = "UPDATE Usuarios SET usuario = ? , nombre = ?, email = ?, apellidos = ?, contraseña = ? WHERE email = ?";
 	    final String DELETE = "DELETE FROM jugadores WHERE idJugador = ?";
 	    final String GETALL = "SELECT idJugador, usuario, nombre, email, apellidos, fechaNacimiento, contraseña,telefono, valoracionMedia FROM jugadores";
 	    final String GETONE = "SELECT * FROM jugadores WHERE idJugador = ?";
