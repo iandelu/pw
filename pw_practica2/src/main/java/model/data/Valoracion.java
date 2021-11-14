@@ -12,9 +12,9 @@ public class Valoracion implements Serializable{
 	
 	private Usuario autor;
 	private int nota;
-	private String critica;
+	private Long critica;
 	
-	public Valoracion(Usuario autor, int nota, String critica) {
+	public Valoracion(Usuario autor, int nota, Long critica) {
 		super();
 		this.autor = autor;
 		this.nota = nota;
@@ -37,11 +37,11 @@ public class Valoracion implements Serializable{
 		this.nota = nota;
 	}
 
-	public String getEspectaculo() {
+	public Long getEspectaculo() {
 		return critica;
 	}
 
-	public void setEspectaculo(String critica) {
+	public void setEspectaculo(Long critica) {
 		this.critica = critica;
 	}
 	

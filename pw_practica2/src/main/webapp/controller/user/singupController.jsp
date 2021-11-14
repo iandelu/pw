@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ page import="java.time.LocalDate, java.time.format.DateTimeFormatter,es.uco.pw.p2.business.UserDTO,es.uco.pw.p2.data.DAO,es.uco.pw.p2.data.UserDAO" %>
-<jsp:useBean id="CustomerBean" scope="session" class="es.uco.pw.p2.display.CustomerBean"></jsp:useBean>
-
+<jsp:useBean id="UserBean" scope="session" class="display.UserBean"></jsp:useBean>
+<%@ page import="model.data.Usuario,model.daos.MySQLDAOManager" %>
 <%
 	String firstname = request.getParameter("firstname");
 	String lastname = request.getParameter("lastname");
@@ -17,7 +16,7 @@
 		
 		Usuario user = gestor.getUsuarios().obtener(request.getParameter("email"));
 		
-		if (CustomerBean.getEmail() != null) {
+		if (UserBean.getEmail() != null) {
 			response.sendRedirect("errorPage.jsp?msg=Debe cerrar la sesion antes de registrar un usuario");
 		}
 		else {		
@@ -25,7 +24,6 @@
 				response.sendRedirect("errorPage.jsp?msg=Ya existe un usuario con ese email");
 			}
 			else {
-				DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 				try {
 					LocalDate birthdate = LocalDate.parse(birthdateStr, formatter);
 					Usuario = new Usuario(-1, email, password, firstname, lastname, birthdate);

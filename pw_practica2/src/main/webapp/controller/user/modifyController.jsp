@@ -7,6 +7,7 @@
 	String lastname = request.getParameter("lastname");
 	String password = request.getParameter("password");
 	String email = request.getParameter("email");
+	String nickname = request.getParameter("nickname")
 	MySQLDAOManager gestor = new MySQLDAOManager();
 	Usuario user = gestor.getUsuarios().obtener(email);
 	
@@ -17,8 +18,8 @@
 		
 		if (UserBean.getEmail() != null) {
 			try{
-
-				Usuario userNuevo = new Usuario(id, CustomerBean.getEmail(), password, firstname, lastname);
+				Long id = user.getIdUsuario();
+				Usuario userNuevo = new Usuario(firstname,lastname, UserBean.getEmail(), nickname, password);
 				gestor.getUsuarios().modificar(user);
 			} catch (Exception e){
 				e.printStackTrace();
