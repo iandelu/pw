@@ -21,9 +21,10 @@ public class MainTotal2
 	static ArrayList<String> categorias;
 	static DAOManager gestorDAO = new DAOManager();
 	
-	public static void main(String args[])
+	public static void main(String args[]) throws Exception
 	{
-		Usuario usr = funcionesMain.iniciarSesion();
+		//Usuario usr = funcionesMain.iniciarSesion();
+		Usuario usr = funcionesMain.registrarse("rovidios");
 		
 		System.out.println("Elige una de las siguientes opciones:\n");
 		System.out.println("1. Dar de alta un espectaculo, incluyendo al menos una fecha de representacion\r\n"
@@ -74,10 +75,15 @@ public class MainTotal2
 					//DAR DE ALTA UN ESPECTACULO
 					System.out.println("Vas a dar de alta un espectaculo.\n");
 					System.out.println("\nIntroduce el id del espectaculo:");
+					entrada=new Scanner(System.in);
 					String idEspectaculo= entrada.nextLine();
 					
 					System.out.println("\nIntroduce la fecha y la hora del espectaculo:\n");
-					System.out.println("\nAÃ±o: ");
+
+					System.out.println("\nAnio: ");
+
+					System.out.println("\nAnioo: ");
+
 					int ano=entrada.nextInt();
 					System.out.println("\nMes: ");
 					int mes=entrada.nextInt();
@@ -130,9 +136,15 @@ public class MainTotal2
 					System.out.println("\n Se han vendido "+numeroVentas+" entradas.\n");
 					
 				case 5: 
+
 					//Consultar las localidades disponibles para un especta¡culo, dada una fecha de representacion
 					System.out.println("Introduce la fecha de la que quieres saber las plazas restantes:\n");
-					System.out.println("\nAÃ±o: ");
+					System.out.println("\nAnio: ");
+
+					//Consultar las localidades disponibles para un espectaÂ¡culo, dada una fecha de representacion
+					System.out.println("Introduce la fecha de la que quieres saber las plazas restantes:\n");
+					System.out.println("\nAnioo: ");
+
 					int anoLocalidadesRestantes=entrada.nextInt();
 					System.out.println("\nMes: ");
 					int mesLocalidadesRestantes=entrada.nextInt();
@@ -256,7 +268,9 @@ public class MainTotal2
 					gestorCriticas.votarUtilidad(usuarioAux2,valoracionUtilidad, criticaAux);
 
 				case 12:
+					System.exit(0);
 					break;
+					
 				default:
 					System.out.println("\nError al insertar numero, tiene que ser del 1 al 12, ni mas ni menos.\n");
 					
