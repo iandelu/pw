@@ -9,9 +9,9 @@ public class Funcion {
 	private LocalDate fecha;
 	private LocalTime hora;
 	private int localidadesRestantes;
+	private Long espectaculo;
 	
-	public Funcion(Long idFuncion, LocalDate fecha, LocalTime hora, int localidadesDisponibles,String nombre) {
-		super();
+	public Funcion(Long idFuncion, LocalDate fecha, LocalTime hora, int localidadesDisponibles) {
 		this.fecha = fecha;
 		this.hora = hora;
 		this.localidadesRestantes = localidadesDisponibles;
@@ -42,12 +42,20 @@ public class Funcion {
 		this.localidadesRestantes = localidadesRestantes;
 	}
 
-	public String getIdFuncion() {
+	public Long getIdFuncion() {
 		return idFuncion;
 	}
 
-	public void setIdFuncion(String idFuncion) {
+	public void setIdFuncion(Long idFuncion) {
 		this.idFuncion = idFuncion;
+	}
+
+	public Long getEspectaculo() {
+		return espectaculo;
+	}
+
+	public void setEspectaculo(Long espectaculo) {
+		this.espectaculo = espectaculo;
 	}
 	
 	

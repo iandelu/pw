@@ -16,7 +16,7 @@ public class EspectaculoPuntual extends Espectaculo{
 					ArrayList<String> categorias, LocalDate fecha, LocalTime hora) {
 		super(idEspectaculo, titulo, descripcion, categorias);
 		// TODO Auto-generated constructor stub
-		Funcion funcionAux = new Funcion(fecha,hora,super.getLocalidadesDisponibles(),(Long)1213);
+		Funcion funcionAux = new Funcion((long)-1,fecha,hora,super.getLocalidadesDisponibles());
 		super.addFuncion(funcionAux);
 		super.setTipoEspectaculo("Puntual");
 	}

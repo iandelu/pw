@@ -1,25 +1,24 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="java.time.LocalDate,es.uco.pw.p2.business.UserDTO,es.uco.pw.p2.data.UserDAO" %>
-<jsp:useBean id="CustomerBean" scope="session" class="es.uco.pw.p2.display.CustomerBean"></jsp:useBean>
+<jsp:useBean id="UserBean" scope="session" class="display.UserBean"></jsp:useBean>
+<%@ page import="model.data.Usuario,model.daos.MySQLDAOManager" %>
 <%
 	String firstname = request.getParameter("firstname");
 	String lastname = request.getParameter("lastname");
 	String password = request.getParameter("password");
-	String birthdateStr = request.getParameter("birthdate");
+	String email = request.getParameter("email");
 	MySQLDAOManager gestor = new MySQLDAOManager();
 	Usuario user = gestor.getUsuarios().obtener(email);
 	
-	if (firstname == null || lastname == null || password == null || birthdateStr == null || firstname == "" || lastname == "" || password == "" || birthdateStr == ""){
+	if (firstname == null || lastname == null || password == null || email == null || firstname == "" || lastname == "" || password == "" || email == ""){
 		response.sendRedirect("errorPage.jsp?msg=Uno o mas campos estaban incompletos");
 	}
 	else{
 		
-		if (CustomerBean.getEmail() != null) {
-			int id = CustomerBean.getEmail();
+		if (UserBean.getEmail() != null) {
 			try{
-				LocalDate birthdate = LocalDate.parse(birthdateStr);
-				Usuario user = new Usuario(id, CustomerBean.getEmail(), password, firstname, lastname, birthdate);
+
+				Usuario userNuevo = new Usuario(id, CustomerBean.getEmail(), password, firstname, lastname);
 				gestor.getUsuarios().modificar(user);
 			} catch (Exception e){
 				e.printStackTrace();

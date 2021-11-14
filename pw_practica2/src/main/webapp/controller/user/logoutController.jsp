@@ -1,14 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="es.uco.pw.p2.business.UserDTO,es.uco.pw.p2.data.UserDAO" %>
-<jsp:useBean id="CustomerBean" scope="session" class="es.uco.pw.p2.display.CustomerBean"></jsp:useBean>
+    <jsp:useBean id="UserBean" scope="session" class="display.UserBean"></jsp:useBean>
+<%@ page import="model.data.Usuario,model.daos.MySQLDAOManager" %>
 <%
-	if (CustomerBean.getEmail() != null) {
-		CustomerBean.setEmail(null);
-		CustomerBean.setFirstname(null);
-		CustomerBean.setLastname(null);
-		CustomerBean.setID(-1);
-		CustomerBean.setLoginAttempts(0);
+	if (UserBean.getEmail() != null) {
+		UserBean.setEmail(null);
+		UserBean.setFirstname(null);
+		UserBean.setLastname(null);
+		UserBean.setID((long)-1);
+		UserBean.setLoginAttempts(0);
 	}
 	response.sendRedirect("login.jsp");
 %>

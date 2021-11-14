@@ -1,15 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<jsp:useBean id="UserBean" scope="session" class="display.UserBean,model.data.Usuario"></jsp:useBean>
+<jsp:useBean id="UserBean" scope="session" class="display.UserBean"></jsp:useBean>
+<%@ page import="model.data.Usuario,model.daos.MySQLDAOManager" %>
 <%
 	if (UserBean.getLoginAttempts() >= 3) {
 		response.sendRedirect("http://www.uco.es/");
 	}
 	else{
-		Usuario user = new Usuario(request.getServletContext());
+	
 		String email = request.getParameter("email");
 		String password = request.getParameter("password");
-		MySQLDAOManager gestor = new MySQLDAOManager();
+		MySQLDAOManager gestor = new MySQLDAOManager(request.getServletContext());
 		Usuario user = gestor.getUsuarios().obtener(email);
 		
 		boolean loginSuccessful = false;
@@ -23,10 +24,10 @@
 		}
 		else {
 			if (loginSuccessful) {
-				UserBean.setID(user.getID());
+				UserBean.setID(user.getIdUsuario());
 				UserBean.setEmail(user.getEmail());
-				UserBean.setFirstname(user.getFirstname());
-				UserBean.setLastname(user.getLastname());
+				UserBean.setFirstname(user.getNombre());
+				UserBean.setLastname(user.getApellidos());
 				response.sendRedirect("/P2_MVC/mvc/view/loginView.jsp");
 			}
 			else {

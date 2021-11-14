@@ -80,7 +80,6 @@ public class Usuario implements Serializable{
 	public String getTipoUsuario() {
 		return tipoUsuario;
 	}
-
 	public void setTipoUsuario(String tipoUsuario) {
 		this.tipoUsuario = tipoUsuario;
 	}
