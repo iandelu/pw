@@ -1,6 +1,6 @@
 package model.mySQL;
 
-import java.sql.Connection;
+import java.sql.Connection; 
 import java.sql.DriverManager;
 
 
@@ -17,7 +17,7 @@ public class ConexionBD {
 		try {
 			
 			Class.forName("com.mysql.jdbc.Driver");
-			con = DriverManager.getConnection(url,usuario,password);
+			con = DriverManager.getConnection("jdbc:mysql://oracle.uco.es:3306/i92lupua","i92lupua","pwuco2021");
 			
 		} catch (final Exception e) {
 			
