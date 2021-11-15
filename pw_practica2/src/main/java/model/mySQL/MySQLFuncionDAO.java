@@ -3,18 +3,19 @@ package model.mySQL;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import model.daos.DAOException;
 import model.daos.FuncionDAO;
 import model.data.Funcion;
+import model.data.Valoracion;
 
 public class MySQLFuncionDAO implements FuncionDAO {
-
-	@Override
-	public void insertar(Funcion f) throws DAOException {
 		
 		PreparedStatement stat = null;
         
@@ -32,17 +33,23 @@ public class MySQLFuncionDAO implements FuncionDAO {
 	        
 	    }
 		
-        try{
-            stat = conn.prepareStatement(INSERT);   
-            
-            stat.setLong(1, f.getIdValoracion());
-            stat.setString(2, f.getAutor());
-            stat.setInt(3, f.getNota());
-            stat.setLong(4, f.getCritica());
-            
-            if(stat.executeUpdate() == 0){
-                throw new DAOException("Puede que no se haya guardado.");
-            }
+	    @Override
+		public void insertar(Funcion f) throws DAOException {
+	    	
+	    	PreparedStatement stat = null;
+	    	
+	    	try{
+	            stat = conn.prepareStatement(INSERT);   
+	            
+	            stat.setLong(1, f.getIdFuncion());
+	            stat.setDate(2, Date.valueOf(f.getFecha()));
+	            stat.setTime(3, f.getHora());
+	            stat.setInt(4, f.getLocalidadesRestantes());
+	            stat.setLong(5, f.getEspectaculo());
+	            
+	            if(stat.executeUpdate() == 0){
+	                throw new DAOException("Puede que no se haya guardado.");
+	            }
             
         } catch(SQLException ex){
             throw new DAOException("Error en SQL", ex);
@@ -68,27 +75,191 @@ public class MySQLFuncionDAO implements FuncionDAO {
 	}
 
 	@Override
-	public void modificar(Funcion j) throws DAOException {
-		// TODO Auto-generated method stub
+	public void modificar(Funcion f) throws DAOException {
+		PreparedStatement stat = null;
+    	
+    	try{
+            stat = conn.prepareStatement(INSERT);   
+            
+            stat.setLong(1, f.getIdFuncion());
+            stat.setDate(2, Date.valueOf(f.getFecha()));
+            stat.setTime(3, f.getHora());
+            stat.setInt(4, f.getLocalidadesRestantes());
+            stat.setLong(5, f.getEspectaculo());
+            stat.setLong(6, f.getIdFuncion());
+            
+            if(stat.executeUpdate() == 0){
+                throw new DAOException("Puede que no se haya guardado.");
+            }
+        
+    } catch(SQLException ex){
+        throw new DAOException("Error en SQL", ex);
+    } finally{
+        if (stat !=  null){
+            
+            try{
+                stat.close();
+            }catch(SQLException ex){
+                throw new DAOException("Error en SQL", ex);
+            }
+        }if(stat != null){
+           
+           try{
+               stat.close();
+           }catch(SQLException ex){
+               new DAOException("Error en SQL", ex);
+           }
+           
+       }
+    }
 		
 	}
 
 	@Override
-	public void eliminar(Funcion j) throws DAOException {
-		// TODO Auto-generated method stub
+	public void eliminar(Funcion f) throws DAOException {
+		PreparedStatement stat = null;
+        
+        try{
+            
+            stat = conn.prepareStatement(DELETE);
+            stat.setLong(1, f.getIdFuncion());
+
+            if(stat.executeUpdate() == 0){
+                throw new DAOException("Puede que no se haya guardado.");
+            }
+            
+        } catch(SQLException ex){
+            throw new DAOException("Error en SQL", ex);
+        } finally{
+            if (stat !=  null){
+                
+                try{
+                    stat.close();
+                }catch(SQLException ex){
+                    throw new DAOException("Error en SQL", ex);
+                }
+            }
+        }
+		
 		
 	}
 
+	
+	private Funcion convertir(ResultSet rs) throws Exception{
+		
+        Long idValoracion = rs.getLong("id");
+        String autor = rs.getString("autor");
+        int nota = rs.getInt("nota");
+        Long critica = rs.getLong("critica");
+
+
+        
+        Funcion f = new Funcion(autor,nota,critica);
+        
+        return f;
+        
+    }
+	
 	@Override
 	public List<Funcion> obtenerTodos() throws DAOException, Exception {
-		// TODO Auto-generated method stub
-		return null;
+		PreparedStatement stat = null;
+	    ResultSet rs = null;
+	    List<Funcion> funciones = new ArrayList<>();
+	       
+	       try {
+			try{
+			       
+			       stat = conn.prepareStatement(GETALL);
+			       rs = stat.executeQuery();
+			       while(rs.next()){
+			           
+			    	   funciones.add(convertir(rs));
+			           
+			       }
+			       
+			   }catch(SQLException ex){
+			        throw new DAOException("Error en SQL", ex);
+			   }finally{
+			       
+			       if(rs != null){
+			           
+			           try{
+			               rs.close();
+			           }catch(SQLException ex){
+			               new DAOException("Error en SQL", ex);
+			           }
+			           
+			       }
+			       if(stat != null){
+			           
+			           try{
+			               stat.close();
+			           }catch(SQLException ex){
+			               new DAOException("Error en SQL", ex);
+			           }
+			           
+			       }
+			   }
+		} catch (DAOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	       
+	        return funciones;
 	}
 
 	@Override
 	public Funcion obtener(Long id) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		   PreparedStatement stat = null;
+	       ResultSet rs = null;
+	       Funcion f = null;
+	       
+	       try {
+			try{
+			       
+			       stat = conn.prepareStatement(GETONE);
+			       stat.setLong(1, id);
+			       rs = stat.executeQuery();
+			       if(rs.next()){
+			           
+			           f = convertir(rs);
+			           
+			       }else{
+			           throw new DAOException("No se ha encontrado ese registro.");
+			       }
+			       
+			   }catch(SQLException ex){
+			        throw new DAOException("Error en SQL", ex);
+			   }finally{
+			       
+			       if(rs != null){
+			           
+			           try{
+			               rs.close();
+			           }catch(SQLException ex){
+			               new DAOException("Error en SQL", ex);
+			           }
+			           
+			       }
+			       if(stat != null){
+			           
+			           try{
+			               stat.close();
+			           }catch(SQLException ex){
+			               new DAOException("Error en SQL", ex);
+			           }
+			           
+			       }
+			   }
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	       
+	        return f;
 	}
 
 	@Override
