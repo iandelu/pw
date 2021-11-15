@@ -11,11 +11,12 @@ public class Funcion {
 	private int localidadesRestantes;
 	private Long espectaculo;
 	
-	public Funcion(Long idFuncion, LocalDate fecha, LocalTime hora, int localidadesDisponibles) {
+	public Funcion(Long idFuncion, LocalDate fecha, LocalTime hora, int localidadesDisponibles, Long idEspectaculo) {
 		this.fecha = fecha;
 		this.hora = hora;
 		this.localidadesRestantes = localidadesDisponibles;
 		this.idFuncion = idFuncion;
+		this.espectaculo = idEspectaculo;
 	}
 
 	public LocalDate getFecha() {

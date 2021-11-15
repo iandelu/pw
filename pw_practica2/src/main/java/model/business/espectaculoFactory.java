@@ -19,23 +19,33 @@ public class espectaculoFactory implements Factory{
 	
 	
 	@Override
-	public Espectaculo crearEspectaculo(String tipoEspectaculo, LocalDate fecha, LocalTime time) {
+	public Espectaculo crearEspectaculo(String tipoEspectaculo, Long idEspectaculo, String titulo, String descripcion, ArrayList<String> categorias, int localidadesDisponibles) {
 		
 		if(tipoEspectaculo == puntual) {
-			EspectaculoPuntual nuevoEspectaculoPuntual = new EspectaculoPuntual((long)-1,"nuevoEspectaculo", "prueba",new ArrayList<String>(), fecha, time);
+			EspectaculoPuntual nuevoEspectaculoPuntual = new EspectaculoPuntual(idEspectaculo,titulo, 
+					descripcion,new ArrayList<String>(),localidadesDisponibles);
 			return nuevoEspectaculoPuntual;
 			
 		}else if(tipoEspectaculo == temporada) {
-			EspectaculoTemporada nuevoEspectaculoTemporada = new EspectaculoTemporada((long)-1, "nuevoEspectaculo", "prueba", new ArrayList<String>(), fecha,time);
+			EspectaculoTemporada nuevoEspectaculoTemporada = new EspectaculoTemporada(idEspectaculo,titulo, 
+					descripcion,new ArrayList<String>(),localidadesDisponibles);
 			return nuevoEspectaculoTemporada;
 			
 		}else if(tipoEspectaculo == paseMultiple) {
-			EspectaculoPaseMultiple nuevoEspectaculoPaseMultiple = new EspectaculoPaseMultiple((long)-1, "nuevoMultiple", "prueba", new ArrayList<String>(),fecha, time);
+			EspectaculoPaseMultiple nuevoEspectaculoPaseMultiple = new EspectaculoPaseMultiple(idEspectaculo,titulo, 
+					descripcion,new ArrayList<String>(),localidadesDisponibles);
 			return nuevoEspectaculoPaseMultiple;
 		}
 		
 		return null;
 		
+	}
+
+
+	@Override
+	public Espectaculo crearEspectaculo(String tipoEspectaculo, LocalDate fecha, LocalTime time) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 	

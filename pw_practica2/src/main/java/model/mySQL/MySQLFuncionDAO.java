@@ -7,6 +7,9 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Time;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -43,7 +46,7 @@ public class MySQLFuncionDAO implements FuncionDAO {
 	            
 	            stat.setLong(1, f.getIdFuncion());
 	            stat.setDate(2, Date.valueOf(f.getFecha()));
-	            stat.setTime(3, f.getHora());
+	            stat.setTime(3, Time.valueOf(f.getHora()));
 	            stat.setInt(4, f.getLocalidadesRestantes());
 	            stat.setLong(5, f.getEspectaculo());
 	            
@@ -83,7 +86,7 @@ public class MySQLFuncionDAO implements FuncionDAO {
             
             stat.setLong(1, f.getIdFuncion());
             stat.setDate(2, Date.valueOf(f.getFecha()));
-            stat.setTime(3, f.getHora());
+            stat.setTime(3, Time.valueOf(f.getHora()));
             stat.setInt(4, f.getLocalidadesRestantes());
             stat.setLong(5, f.getEspectaculo());
             stat.setLong(6, f.getIdFuncion());
@@ -148,13 +151,13 @@ public class MySQLFuncionDAO implements FuncionDAO {
 	private Funcion convertir(ResultSet rs) throws Exception{
 		
         Long idValoracion = rs.getLong("id");
-        String autor = rs.getString("autor");
-        int nota = rs.getInt("nota");
-        Long critica = rs.getLong("critica");
-
+        Date fecha = rs.getDate("fecha");
+        Time hora = rs.getTime("hora");
+        int  localidadesRestantes = rs.getInt("localidadesRestantes");
+        Long espectaculo = rs.getLong("espectaculo");
 
         
-        Funcion f = new Funcion(autor,nota,critica);
+        Funcion f = new Funcion(idValoracion,fecha.toLocalDate(),hora.toLocalTime(),localidadesRestantes,espectaculo);
         
         return f;
         

@@ -13,11 +13,9 @@ public class EspectaculoPuntual extends Espectaculo{
 	private static final long serialVersionUID = 1L;
 
 	public EspectaculoPuntual(Long idEspectaculo, String titulo,String descripcion, 
-					ArrayList<String> categorias, LocalDate fecha, LocalTime hora) {
-		super(idEspectaculo, titulo, descripcion, categorias);
+					ArrayList<String> categorias, int localidadesDisponibles) {
+		super(idEspectaculo, titulo, descripcion, categorias, localidadesDisponibles, descripcion);
 		// TODO Auto-generated constructor stub
-		Funcion funcionAux = new Funcion((long)-1,fecha,hora,super.getLocalidadesDisponibles());
-		super.addFuncion(funcionAux);
 		super.setTipoEspectaculo("Puntual");
 	}
 	

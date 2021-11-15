@@ -21,14 +21,18 @@ public class Espectaculo implements Serializable{
 	private ArrayList<Funcion> funciones;
 	
 	
-	public Espectaculo(Long idEspectaculo, String titulo, String descripcion, ArrayList<String> categorias) {
+	
+	
+	public Espectaculo(Long idEspectaculo, String titulo, String descripcion, ArrayList<String> categorias,
+			int localidadesDisponibles, String tipoEspectaculo) {
 		super();
 		this.idEspectaculo = idEspectaculo;
 		this.titulo = titulo;
 		this.descripcion = descripcion;
 		this.categorias = categorias;
+		this.localidadesDisponibles = localidadesDisponibles;
+		this.tipoEspectaculo = tipoEspectaculo;
 	}
-	
 	public Long getIdEspectaculo() {
 		return idEspectaculo;
 	}
@@ -72,8 +76,9 @@ public class Espectaculo implements Serializable{
 		this.funciones = funciones;
 	}
 	public void addFuncion(LocalDate fecha, LocalTime hora) {
-		Funcion nuevaFuncion = new Funcion((long)1,fecha, hora, getLocalidadesDisponibles());
+		Funcion nuevaFuncion = new Funcion((long)1,fecha, hora, getLocalidadesDisponibles(),this.getIdEspectaculo());
 		funciones.add(nuevaFuncion);
+
 	}
 	public void addFuncion(Funcion funcion) {
 		funciones.add(funcion);
