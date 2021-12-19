@@ -6,8 +6,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
+import business.EspectaculoFactory;
 import model.business.espectaculoFactory;
 import model.daos.DAOException;
 import model.daos.EspectaculoDAO;
@@ -155,19 +157,19 @@ PreparedStatement stat = null;
 		
 	}
 	
-private Usuario convertir(ResultSet rs) throws Exception{
+private Espectaculo convertir(ResultSet rs) throws Exception{
         
-        String tipo = rs.getString("tipo");
-        String apellidos = rs.getString("titulo");
-        String nickname = rs.getString("descripcion");
-        String contraseña = rs.getString("localidadesDisponibles");
-        String email = rs.getString("email");
-        String tipo = rs.getString("tipo");
+        String tipoEspectaculo = rs.getString("tipo");
+        Long idEspectaculo = rs.getLong("idEspectaculo");
+        String titulo = rs.getString("titulo");
+        String descripcion = rs.getString("descripcion");
+        ArrayList<String> categorias = null;
+        int localidadesDisponibles = rs.getInt("localidadesDisponibles");
         
-        espectaculoFactory factoria = new espectaculoFactory();
-        Espectaculo j = factoria.crearEspectaculo(tipo, idEspectaculo, email, tipo, null, 0)
+        EspectaculoFactory factoria = new EspectaculoFactory();
+        Espectaculo espectaculoAux = factoria.crearEspectaculo( tipoEspectaculo, idEspectaculo,  titulo,  descripcion,  categorias, localidadesDisponibles);
         
-        return j;
+        return espectaculoAux;
 }
 
 	@Override
