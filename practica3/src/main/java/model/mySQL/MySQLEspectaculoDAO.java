@@ -10,7 +10,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import business.EspectaculoFactory;
-import model.business.espectaculoFactory;
 import model.daos.DAOException;
 import model.daos.EspectaculoDAO;
 import model.data.Espectaculo;
