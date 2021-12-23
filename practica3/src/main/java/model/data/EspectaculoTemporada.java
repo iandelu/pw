@@ -18,13 +18,6 @@ public class EspectaculoTemporada extends Espectaculo{
 		super.setTipoEspectaculo("Temporada");
 		
 	}
-	
-	public void addFuncion(LocalDate fecha, LocalTime hora) {
-		if(fecha.getDayOfWeek().name()==diaWeek) {
-			Funcion nuevaFuncion = new Funcion((long)-1,fecha, hora, super.getLocalidadesDisponibles(),super.getIdEspectaculo());
-			super.addFuncion(nuevaFuncion);
-		}
-	}
 
 	public String getDiaWeek() {
 		return diaWeek;

@@ -232,9 +232,8 @@ public class MySQLUsuarioDAO implements UsuarioDAO{
 	@Override
 	public Usuario obtener(String email) throws Exception {
 		PreparedStatement stat = null;
-	       ResultSet rs = null;
-	       Usuario u = null;
-	       
+	    ResultSet rs = null;
+	    Usuario u = null;
 	       try {
 			try{
 			       

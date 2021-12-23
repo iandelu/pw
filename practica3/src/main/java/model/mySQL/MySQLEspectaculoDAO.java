@@ -43,11 +43,10 @@ public class MySQLEspectaculoDAO implements EspectaculoDAO{
 	
 	@Override
 	public void insertar(Espectaculo u) throws DAOException {
-PreparedStatement stat = null;
+		PreparedStatement stat = null;
         
         try{
             stat = conn.prepareStatement(INSERT);   
-            
             stat.setLong(1, u.getIdEspectaculo());
             stat.setString(2, u.getTitulo());
             stat.setString(3, u.getDescripcion());
@@ -78,7 +77,6 @@ PreparedStatement stat = null;
                    new DAOException("Error en SQL", ex);
                }
                
-
             }
         }
 		
@@ -86,7 +84,7 @@ PreparedStatement stat = null;
 
 	@Override
 	public void modificar(Espectaculo u) throws DAOException {
-PreparedStatement stat = null;
+		PreparedStatement stat = null;
 		
 		try{
             stat = conn.prepareStatement(UPDATE);   
@@ -164,23 +162,110 @@ private Espectaculo convertir(ResultSet rs) throws Exception{
         String descripcion = rs.getString("descripcion");
         ArrayList<String> categorias = null;
         int localidadesDisponibles = rs.getInt("localidadesDisponibles");
+        ArrayList<String> funciones = null;
         
         EspectaculoFactory factoria = new EspectaculoFactory();
         Espectaculo espectaculoAux = factoria.crearEspectaculo( tipoEspectaculo, idEspectaculo,  titulo,  descripcion,  categorias, localidadesDisponibles);
-        
+        espectaculoAux.setFunciones(funciones);
         return espectaculoAux;
 }
 
 	@Override
-	public List<Espectaculo> obtenerTodos() {
-		// TODO Auto-generated method stub
-		return null;
+	public ArrayList<Espectaculo> obtenerTodos() {
+		PreparedStatement stat = null;
+	    ResultSet rs = null;
+	    ArrayList<Espectaculo> espectaculos = new ArrayList<>();
+	       
+	       try {
+			try{
+			       stat = conn.prepareStatement(GETALL);
+			       rs = stat.executeQuery();
+			       while(rs.next()){
+			    	   espectaculos.add(convertir(rs));
+			       }
+			       
+			   }catch(SQLException ex){
+			        throw new DAOException("Error en SQL", ex);
+			   }finally{
+			       
+			       if(rs != null){
+			           
+			           try{
+			               rs.close();
+			           }catch(SQLException ex){
+			               new DAOException("Error en SQL", ex);
+			           }
+			           
+			       }
+			       if(stat != null){
+			           
+			           try{
+			               stat.close();
+			           }catch(SQLException ex){
+			               new DAOException("Error en SQL", ex);
+			           }
+			           
+			       }
+			   }
+		} catch (DAOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	       
+	        return espectaculos;
 	}
 
 	@Override
 	public Espectaculo obtener(Long id) {
-		// TODO Auto-generated method stub
-		return null;
+		PreparedStatement stat = null;
+	    ResultSet rs = null;
+	    Espectaculo espectaculo = null;
+	       try {
+			try{
+			       
+			       stat = conn.prepareStatement(GETONE);
+			       stat.setLong(1, id);
+			       rs = stat.executeQuery();
+			       if(rs.next()){
+			           
+			    	   espectaculo = convertir(rs);
+			           
+			       }else{
+			           throw new DAOException("No se ha encontrado ese registro.");
+			       }
+			       
+			   }catch(SQLException ex){
+			        throw new DAOException("Error en SQL", ex);
+			   }finally{
+			       
+			       if(rs != null){
+			           
+			           try{
+			               rs.close();
+			           }catch(SQLException ex){
+			               new DAOException("Error en SQL", ex);
+			           }
+			           
+			       }
+			       if(stat != null){
+			           
+			           try{
+			               stat.close();
+			           }catch(SQLException ex){
+			               new DAOException("Error en SQL", ex);
+			           }
+			           
+			       }
+			   }
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	       
+	        return espectaculo;
 	}
 
 	@Override
