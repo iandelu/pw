@@ -1,48 +1,32 @@
 package model.mySQL;
-
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-
+import java.sql.*;
 
 public class ConexionBD {
-	
-	protected static Connection con = null;
-	
-	protected String url = "jdbc:mysql://oraclepr.uco.es:3306/i92lupua";
 
-	protected String user = "i92lupua";
+	public static void main(String[] args) {
 
-	protected String password = "pw2021uco";
-	
-	public ConexionBD(){
-		
-	}
-
-	public static Connection getConnection() throws Exception {
-		
 		try {
+		//1. Crear conexion
+			//Class.forName("com.mysql.cj.jdbc.Driver");
+			Connection miConexion=DriverManager.getConnection("jdbc:mysql://oraclepr.uco.es:3306/i92lupua", "i92lupua", "pwuco2021");
 			
-			Class.forName("com.mysql.jdbc.Driver");
-			con = DriverManager.getConnection("jdbc:mysql://oraclepr.uco.es:3306/i92lupua","i92lupua","pw2021uco");
+		//2. Crear objeto statement
+			Statement miStatement=miConexion.createStatement();
 			
-		} catch (final Exception e) {
-			
-			System.out.println(e);
-		}
-		
-		return con;
-	}
-	
-	public void closeConnection() {
-		try {
-			if(this.con != null && !this.con.isClosed()) {
-				this.con.close();
-				System.out.println("Database connection successfully closed!");
+		//3. Sentencias SQL
+			ResultSet miResultset=miStatement.executeQuery("SELECT * FROM Critica");
+					
+		//4. Imprimimos el output de las sentencias SQL
+			while(miResultset.next()) {
+				System.out.println(miResultset.getString("id")+" "+miResultset.getString("titulo"));
 			}
-		} catch (SQLException e) {
-			System.err.println("Error while trying to close the connection.");
+		
+		//5. Cerramos la conexión
+			miConexion.close();
+			
+		}catch(Exception e) {
+			System.out.println("Error, no se pudo establecer la conexión con la base de datos.");
 			e.printStackTrace();
-		}
+		}	
 	}
 }
