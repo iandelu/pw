@@ -6,7 +6,9 @@ public class ConexionBD {
 	public static void main(String[] args) {
 
 		try {
-			Class.forName("com.mysql.jdbc.Driver");
+			
+			
+			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 		//1. Crear conexion
 			//Class.forName("com.mysql.cj.jdbc.Driver");
 			Connection miConexion = DriverManager.getConnection("jdbc:mysql://oraclepr.uco.es:3306/i92lupua", "i92lupua", "pwuco2021");

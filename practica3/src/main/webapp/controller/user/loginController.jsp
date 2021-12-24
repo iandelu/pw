@@ -24,7 +24,6 @@
 		}
 		else {
 			if (loginSuccessful) {
-				UserBean.setID(user.getIdUsuario());
 				UserBean.setEmail(user.getEmail());
 				UserBean.setFirstname(user.getNombre());
 				UserBean.setLastname(user.getApellidos());

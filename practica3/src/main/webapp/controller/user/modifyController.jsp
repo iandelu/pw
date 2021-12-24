@@ -18,7 +18,6 @@
 		
 		if (UserBean.getEmail() != null) {
 			try{
-				Long id = user.getIdUsuario();
 				Usuario userNuevo = new Usuario(firstname,lastname, UserBean.getEmail(), nickname, password);
 				gestor.getUsuarios().modificar(user);
 			} catch (Exception e){
