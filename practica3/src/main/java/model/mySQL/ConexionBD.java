@@ -6,9 +6,10 @@ public class ConexionBD {
 	public static void main(String[] args) {
 
 		try {
+			Class.forName("com.mysql.jdbc.Driver");
 		//1. Crear conexion
 			//Class.forName("com.mysql.cj.jdbc.Driver");
-			Connection miConexion=DriverManager.getConnection("jdbc:mysql://oraclepr.uco.es:3306/i92lupua", "i92lupua", "pwuco2021");
+			Connection miConexion = DriverManager.getConnection("jdbc:mysql://oraclepr.uco.es:3306/i92lupua", "i92lupua", "pwuco2021");
 			
 		//2. Crear objeto statement
 			Statement miStatement=miConexion.createStatement();

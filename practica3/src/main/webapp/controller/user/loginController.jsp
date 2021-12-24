@@ -10,7 +10,7 @@
 	
 		String email = request.getParameter("email");
 		String password = request.getParameter("password");
-		MySQLDAOManager gestor = new MySQLDAOManager();
+		MySQLDAOManager gestor = new MySQLDAOManager("jdbc:mysql://oraclepr.uco.es:3306", "i9lupua", "pwuco2021", "i92lupua");
 		Usuario user = gestor.getUsuarios().obtener(email);
 		
 		boolean loginSuccessful = false;

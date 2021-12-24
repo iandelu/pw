@@ -12,7 +12,7 @@
 	</head>
 	<body>
 	
-		<%MySQLDAOManager gestor = new MySQLDAOManager(); 
+		<%MySQLDAOManager gestor = new MySQLDAOManager("jdbc:mysql://oraclepr.uco.es:3306", "i9lupua", "pwuco2021", "i92lupua"); 
 		  Usuario user = gestor.getUsuarios().obtener(UserBean.getEmail());
 		
 		

@@ -34,8 +34,8 @@ public class MySQLUsuarioDAO implements UsuarioDAO{
     *   ------------------------------------_
     */
     
-	final String INSERT = "INSERT INTO Usuarios( nickname, nombre, email, apellidos, contraseña) VALUES (?,?,?,?,?)"; 
-	final String UPDATE = "UPDATE Usuarios SET nickname = ? , nombre = ?, email = ?, apellidos = ?, contraseña = ? WHERE email = ?";
+	final String INSERT = "INSERT INTO Usuarios( nickname, nombre, email, apellidos, contraseña, tipo, registro, sesion) VALUES (?,?,?,?,?,?,?,?)"; 
+	final String UPDATE = "UPDATE Usuarios SET nickname = ? , nombre = ?, email = ?, apellidos = ?, contraseña = ?, registro = ?, sesion = ? WHERE email = ?";
     final String DELETE = "DELETE FROM Usuarios WHERE email = ?";
     final String GETALL = "SELECT usuario, nombre, email, apellidos, contraseña FROM Usuarios";
     final String GETONE = "SELECT usuario, nombre, email, apellidos, contraseña FROM Usuarios WHERE email = ?";
@@ -62,6 +62,9 @@ public class MySQLUsuarioDAO implements UsuarioDAO{
             stat.setString(3, u.getEmail());
             stat.setString(4, u.getApellidos());
             stat.setString(5, u.getPassword());
+            stat.setString(6, u.getTipoUsuario());
+            stat.setDate(7, u.getRegistro());
+            stat.setDate(8, u.getSesion());
             
             
             if(stat.executeUpdate() == 0){
@@ -104,7 +107,9 @@ public class MySQLUsuarioDAO implements UsuarioDAO{
             stat.setString(3, u.getEmail());
             stat.setString(4, u.getApellidos());
             stat.setString(5, u.getPassword());
-            stat.setString(6, u.getEmail());
+            stat.setDate(6, u.getRegistro());
+            stat.setDate(7, u.getSesion());
+            stat.setString(8, u.getEmail());
             
             
             if(stat.executeUpdate() == 0){
@@ -170,9 +175,13 @@ public class MySQLUsuarioDAO implements UsuarioDAO{
         String contraseña = rs.getString("contraseña");
         String email = rs.getString("email");
         String tipo = rs.getString("tipo");
+        Date registro = rs.getDate("registro");
+        Date sesion = rs.getDate("sesion");
         
         Usuario j = new Usuario(nombre,apellidos,email,nickname,contraseña);
         j.setTipoUsuario(tipo);
+        j.setRegistro(registro);
+        j.setSesion(sesion);
         
         return j;
         

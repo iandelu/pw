@@ -1,6 +1,8 @@
 package model.data;
 
 import java.io.Serializable;
+import java.sql.Date;
+import java.time.LocalDate;
 
 
 
@@ -11,13 +13,14 @@ public class Usuario implements Serializable{
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	private Long idUsuario;
 	private String nombre;
 	private String apellidos;
 	private Email email;
 	private String nickname;
 	private String password;
 	private String tipoUsuario;
+	private Date registro;
+	private Date sesion;
 	
 	public Usuario(String nombre, String apellidos, String email, String nickname, String password) throws Exception {
 		super();
@@ -26,7 +29,6 @@ public class Usuario implements Serializable{
 		this.setEmail(email);
 		this.nickname = nickname;
 		this.password = password;
-		this.idUsuario = (long)-1;
 		this.tipoUsuario = "ESPECTADOR";
 	}
 	
@@ -70,18 +72,31 @@ public class Usuario implements Serializable{
 				+ ", password=" + password + "]";
 	}
 
-	public Long getIdUsuario() {
-		return idUsuario;
-	}
-	public void setIdUsuario(Long idUsuario) {
-		this.idUsuario = idUsuario;
-	}
-
 	public String getTipoUsuario() {
 		return tipoUsuario;
 	}
 	public void setTipoUsuario(String tipoUsuario) {
 		this.tipoUsuario = tipoUsuario;
+	}
+
+
+	public Date getRegistro() {
+		return registro;
+	}
+
+
+	public void setRegistro(Date registro) {
+		this.registro = registro;
+	}
+
+
+	public Date getSesion() {
+		return sesion;
+	}
+
+
+	public void setSesion(Date sesion) {
+		this.sesion = sesion;
 	}
 
 	

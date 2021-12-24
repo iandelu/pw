@@ -144,8 +144,6 @@ public class MySQLValoracionDAO implements ValoracionDAO{
         String autor = rs.getString("autor");
         int nota = rs.getInt("nota");
         Long critica = rs.getLong("critica");
-
-
         
         Valoracion v = new Valoracion(autor,nota,critica);
         

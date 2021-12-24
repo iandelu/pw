@@ -8,7 +8,7 @@
 	String password = request.getParameter("password");
 	String email = request.getParameter("email");
 	String nickname = request.getParameter("nickname");
-	MySQLDAOManager gestor = new MySQLDAOManager();
+	MySQLDAOManager gestor = new MySQLDAOManager("jdbc:mysql://oraclepr.uco.es:3306", "i9lupua", "pwuco2021", "i92lupua");
 	Usuario user = gestor.getUsuarios().obtener(email);
 	
 	if (firstname == null || lastname == null || password == null || email == null || firstname == "" || lastname == "" || password == "" || email == ""){
