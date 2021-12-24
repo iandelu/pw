@@ -17,8 +17,8 @@
     		response.sendRedirect("http://www.uco.es/");
     	}%>
     	<% if (UserBean.getEmail() != null) { %>
-    		<p>Bienvenido <jsp:getProperty property="firstname" name="CustomerBean"/> <jsp:getProperty property="lastname" name="CustomerBean"/>
-    		(<jsp:getProperty property="email" name="CustomerBean"/>)
+    		<p>Bienvenido <jsp:getProperty property="firstname" name="UserBean"/> <jsp:getProperty property="lastname" name="UserBean"/>
+    		(<jsp:getProperty property="email" name="UserBean"/>)
     		</p>
     		<br/>
     		<button type="button" onclick="window.location.href='../controller/user/logoutController.jsp';">Cerrar sesion</button>
@@ -28,7 +28,7 @@
 		<div class="container-login100">
 			<div class="wrap-registro">
 
-				<form action="../controller/user/loginController" class="registro-form validate-form text-center" method="post" action="/IW_/RegistrarController">
+				<form action="../controller/user/loginController.jsp" class="registro-form validate-form text-center" method="post">
 					<span class="login100-form-title">
 						Login
 					</span>
