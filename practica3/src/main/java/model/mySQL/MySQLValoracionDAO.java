@@ -10,6 +10,7 @@ import java.util.List;
 
 import model.daos.DAOException;
 import model.daos.ValoracionDAO;
+import model.data.Critica;
 import model.data.Usuario;
 import model.data.Valoracion;
 
@@ -19,6 +20,7 @@ public class MySQLValoracionDAO implements ValoracionDAO{
 	final String UPDATE = "UPDATE Valoracion SET id = ? , autor = ?, nota = ?, critica = ? WHERE id = ?";
     final String DELETE = "DELETE FROM Valoracion WHERE id = ?";
     final String GETALL = "SELECT id, autor, nota, critica FROM Usuarios";
+    final String GETALLCRITICA = "SELECT id, autor, nota, critica FROM Usuarios WHERE critica = ?";
     final String GETONE = "SELECT id, autor, nota, critica FROM Usuarios WHERE id = ?";
     
     private Connection conn;
@@ -263,6 +265,56 @@ public class MySQLValoracionDAO implements ValoracionDAO{
 	public void guardarFichero() throws FileNotFoundException, IOException {
 		// TODO Auto-generated method stub
 		
+	}
+	
+	public List<Valoracion> obtenerValoracionesCritica(Long idCritica) {
+		PreparedStatement stat = null;
+	    ResultSet rs = null;
+	    List<Valoracion> valoraciones = new ArrayList<>();
+	       
+	       try {
+			try{
+			       stat = conn.prepareStatement(GETALLCRITICA);
+			       stat.setLong(1, idCritica);
+			       rs = stat.executeQuery();
+			       while(rs.next()){
+			           
+			    	   valoraciones.add(convertir(rs));
+			           
+			       }
+			       
+			   }catch(SQLException ex){
+			        throw new DAOException("Error en SQL", ex);
+			   }finally{
+			       
+			       if(rs != null){
+			           
+			           try{
+			               rs.close();
+			           }catch(SQLException ex){
+			               new DAOException("Error en SQL", ex);
+			           }
+			           
+			       }
+			       if(stat != null){
+			           
+			           try{
+			               stat.close();
+			           }catch(SQLException ex){
+			               new DAOException("Error en SQL", ex);
+			           }
+			           
+			       }
+			   }
+		} catch (DAOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	       
+	        return valoraciones;
 	}
 
 }

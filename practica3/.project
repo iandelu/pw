@@ -28,11 +28,4 @@
 		<nature>org.eclipse.jdt.core.javanature</nature>
 		<nature>org.eclipse.wst.jsdt.core.jsNature</nature>
 	</natures>
-	<linkedResources>
-		<link>
-			<name>lib/mssql-jdbc-9.4.1.jre8.jar</name>
-			<type>1</type>
-			<locationURI>PARENT-4-PROJECT_LOC/Downloads/sqljdbc_9.4.1.0_enu/sqljdbc_9.4/enu/mssql-jdbc-9.4.1.jre8.jar</locationURI>
-		</link>
-	</linkedResources>
 </projectDescription>

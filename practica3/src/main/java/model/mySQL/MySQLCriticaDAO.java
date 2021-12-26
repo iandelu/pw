@@ -27,6 +27,7 @@ public class MySQLCriticaDAO implements CriticaDAO{
 	    final String DELETE = "DELETE FROM Critica WHERE id = ?";
 	    final String GETALL = "SELECT id, autor, titulo, puntuacion, texto, espectaculo FROM Critica";
 	    final String GETONE = "SELECT id, autor, titulo, puntuacion, texto, espectaculo FROM Critica WHERE id = ?";
+	    final String GETALLESPECTACULO = "SELECT id, autor, titulo, puntuacion, texto, espectaculo FROM Critica WHERE espectaculo = ?";
 	        
 	    
 	    private Connection conn;
@@ -279,4 +280,53 @@ PreparedStatement stat = null;
 		
 	}
 
+	public List<Critica> obtenerDeEspectaculo(Long idEspectaculo) {
+		PreparedStatement stat = null;
+	    ResultSet rs = null;
+	    List<Critica> criticas = new ArrayList<>();
+	       
+	       try {
+			try{
+			       stat = conn.prepareStatement(GETALLESPECTACULO);
+			       stat.setLong(1, idEspectaculo);
+			       rs = stat.executeQuery();
+			       while(rs.next()){
+			           
+			    	   criticas.add(convertir(rs));
+			           
+			       }
+			       
+			   }catch(SQLException ex){
+			        throw new DAOException("Error en SQL", ex);
+			   }finally{
+			       
+			       if(rs != null){
+			           
+			           try{
+			               rs.close();
+			           }catch(SQLException ex){
+			               new DAOException("Error en SQL", ex);
+			           }
+			           
+			       }
+			       if(stat != null){
+			           
+			           try{
+			               stat.close();
+			           }catch(SQLException ex){
+			               new DAOException("Error en SQL", ex);
+			           }
+			           
+			       }
+			   }
+		} catch (DAOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	       
+	        return criticas;
+	}
 }
