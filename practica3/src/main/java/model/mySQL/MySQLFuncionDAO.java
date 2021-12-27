@@ -22,11 +22,12 @@ public class MySQLFuncionDAO implements FuncionDAO {
 		
 		PreparedStatement stat = null;
         
-		final String INSERT = "INSERT INTO Valoracion( id, autor, nota, critica) VALUES (?,?,?,?)"; 
-		final String UPDATE = "UPDATE Valoracion SET id = ? , autor = ?, nota = ?, critica = ? WHERE id = ?";
-	    final String DELETE = "DELETE FROM Valoracion WHERE id = ?";
-	    final String GETALL = "SELECT id, autor, nota, critica FROM Usuarios";
-	    final String GETONE = "SELECT id, autor, nota, critica FROM Usuarios WHERE id = ?";
+		final String INSERT = "INSERT INTO Funcion( id, fecha, hora, espectaculo) VALUES (?,?,?,?)"; 
+		final String UPDATE = "UPDATE Funcion SET id = ? , fecha = ?, hora = ?, espectaculo = ? WHERE id = ?";
+	    final String DELETE = "DELETE FROM Funcion WHERE id = ?";
+	    final String GETALL = "SELECT id, fecha, hora, espectaculo FROM Funcion";
+	    final String GETONE = "SELECT id, fecha, hora, espectaculo FROM Funcion WHERE id = ?";
+	    final String GETALLESPECTACULO = "SELECT id, fecha, hora, espectaculo FROM Funcion WHERE espectaculo = ?";
 	    
 	    private Connection conn;
 	    
@@ -277,4 +278,54 @@ public class MySQLFuncionDAO implements FuncionDAO {
 		
 	}
 
+	public List<Funcion> obtenerTodosEspectaculo(Long idEspectaculo) throws DAOException, Exception {
+		PreparedStatement stat = null;
+	    ResultSet rs = null;
+	    List<Funcion> funciones = new ArrayList<>();
+	       
+	       try {
+			try{
+			       
+			       stat = conn.prepareStatement(GETALLESPECTACULO);
+			       stat.setLong(1,idEspectaculo);
+			       rs = stat.executeQuery();
+			       while(rs.next()){
+			           
+			    	   funciones.add(convertir(rs));
+			           
+			       }
+			       
+			   }catch(SQLException ex){
+			        throw new DAOException("Error en SQL", ex);
+			   }finally{
+			       
+			       if(rs != null){
+			           
+			           try{
+			               rs.close();
+			           }catch(SQLException ex){
+			               new DAOException("Error en SQL", ex);
+			           }
+			           
+			       }
+			       if(stat != null){
+			           
+			           try{
+			               stat.close();
+			           }catch(SQLException ex){
+			               new DAOException("Error en SQL", ex);
+			           }
+			           
+			       }
+			   }
+		} catch (DAOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	       
+	        return funciones;
+	}
 }

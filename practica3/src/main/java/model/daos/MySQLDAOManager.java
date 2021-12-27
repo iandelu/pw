@@ -8,6 +8,7 @@ import java.sql.SQLException;
 
 import model.mySQL.MySQLCriticaDAO;
 import model.mySQL.MySQLEspectaculoDAO;
+import model.mySQL.MySQLFuncionDAO;
 import model.mySQL.MySQLUsuarioDAO;
 
 public class MySQLDAOManager {
@@ -16,7 +17,8 @@ public class MySQLDAOManager {
 	
 	private MySQLUsuarioDAO usuarios = null;
 	private MySQLCriticaDAO criticas = null;
-	private MySQLEspectaculoDAO espectaculos;
+	private MySQLEspectaculoDAO espectaculos = null;
+	private MySQLFuncionDAO funciones = null;
 
 	public MySQLDAOManager(String host, String username, String password, String database) throws SQLException{
         
@@ -45,6 +47,14 @@ public class MySQLDAOManager {
 			espectaculos = new MySQLEspectaculoDAO(conn);
 		}
 		return espectaculos;
+	}
+	
+	public MySQLFuncionDAO getFunciones() {
+		
+		if(funciones == null) {
+			funciones = new MySQLFuncionDAO(conn);
+		}
+		return funciones;
 	}
 	
 	public void guardarFicheros() throws IOException, IOException {

@@ -18,7 +18,7 @@ public class Espectaculo implements Serializable{
 	private ArrayList<String> categorias;
 	private int localidadesDisponibles;
 	private String tipoEspectaculo;
-	private ArrayList<String> funciones;
+	private ArrayList<Long> funciones;
 	
 	
 	
@@ -69,14 +69,14 @@ public class Espectaculo implements Serializable{
 	public void setTipoEspectaculo(String tipoEspectaculo) {
 		this.tipoEspectaculo = tipoEspectaculo;
 	}
-	public ArrayList<String> getFunciones() {
+	public ArrayList<Long> getFunciones() {
 		return funciones;
 	}
-	public void setFunciones(ArrayList<String> funciones) {
+	public void setFunciones(ArrayList<Long> funciones) {
 		this.funciones = funciones;
 	}
 	
-	public void addFuncion(String nuevaFuncion) {
+	public void addFuncion(Long nuevaFuncion) {
 		funciones.add(nuevaFuncion);
 
 	}
