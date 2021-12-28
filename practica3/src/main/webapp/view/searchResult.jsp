@@ -3,9 +3,11 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%
+	MySQLDAOManager man = new MySQLDAOManager("","","","");
 	if (userBean.getEmail() == null){
 		response.sendRedirect(request.getContextPath());
 	}
+	Funcion fun;
 %>
 <!DOCTYPE html>
 <html>
@@ -26,32 +28,26 @@
 			
 			<% if (titleQuery != null) { %>
 				<p>Resultados que coinciden con "<%= titleQuery %>"</p>
-			<% } else if (startDate != null && endDate != null) { %>
+			<% } else if (categoria == null) { %>
 				
 				<p>Resultados de publicaciones  <%= categoria %></p>
 			<% } %>
 			
-			<% ArrayList<Espectaculo> ads = (ArrayList<Espectaculo>) request.getAttribute("espectaculoSearch"); %>
+			<% ArrayList<Espectaculo> espectaculos = (ArrayList<Espectaculo>) request.getAttribute("espectaculoSearch"); %>
 			
-			<% if (ads == null || ads.size() == 0) { %>
+			<% if (espectaculos == null || espectaculos.size() == 0) { %>
 				<p>No hay Espectaculos que coincidan con la bussqueda</p>
 			<% } else { %>
 				<div class="tablon-anuncios">
-					<% for (Ad a : ads){ %>
-						<div class="anuncio">
-							<h4><%= a.getTitle() %></h4>
-							<p><%= a.getContent() %></p>
-							<% LocalDate publishDate = a.getPublishDate(); %>
-							<% if (!publishDate.equals(LocalDate.of(1970, 1, 1))) { %>
-								<p class="small-text">Publicado el dia
-								
-								<% String formattedDate = publishDate.format(formatter); %>
-								<%= formattedDate %>
-								</p>
-							<% } else { %>
-								<p class="small-text">No publicado nunca</p>
-							<% } %>
-							<p class="small-text">Autor: <%= a.getOwner().getFirstname() + " " + a.getOwner().getLastname() + " (" + a.getOwner().getEmail() + ")" %></p>
+					<% for (Espectaculo a : espectaculos){ %>
+						<div class="anuncio" data-type="<%= a.getTipoEspectaculo() %>">
+							<h3><%= a.getTitulo() %></h3>
+							<p><%= a.getDescripcion() %></p>
+							<p class="small-text">Proxima Funcion
+							<%fun = man.getFunciones().obtener(a.getFunciones().get(0));%>
+							<% String formattedDate = fun.getFecha().format(formatter); %>
+							<%= formattedDate %>
+							</p>
 						</div>
 					<% } %>
 				</div>

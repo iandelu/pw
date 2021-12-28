@@ -35,11 +35,11 @@
 
 </header>
 <%
-Espectaculo espectaculoActual = (Espectaculo) session.getAttribute("E");
-Class.forName("com.mysql.jdbc.Driver");
-MySQLDAOManager man = new MySQLDAOManager("", "", "", "");
-ArrayList<Funcion> funciones = (ArrayList<Funcion>) man.getFunciones()
-		.obtenerTodosEspectaculo(espectaculoActual.getIdEspectaculo());
+	Espectaculo espectaculoActual = (Espectaculo) session.getAttribute("E");
+	Class.forName("com.mysql.jdbc.Driver");
+	MySQLDAOManager man = new MySQLDAOManager("", "", "", "");
+	ArrayList<Funcion> funciones = (ArrayList<Funcion>) man.getFunciones()
+			.obtenerTodosEspectaculo(espectaculoActual.getIdEspectaculo());
 %>
 
 <body>
