@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.sql.*;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -34,11 +35,11 @@ public class MySQLUsuarioDAO implements UsuarioDAO{
     *   ------------------------------------_
     */
     
-	final String INSERT = "INSERT INTO Usuarios( nickname, nombre, email, apellidos, contraseña, tipo, registro, sesion) VALUES (?,?,?,?,?,?,?,?)"; 
-	final String UPDATE = "UPDATE Usuarios SET nickname = ? , nombre = ?, email = ?, apellidos = ?, contraseña = ?, registro = ?, sesion = ? WHERE email = ?";
-    final String DELETE = "DELETE FROM Usuarios WHERE email = ?";
-    final String GETALL = "SELECT usuario, nombre, email, apellidos, contraseña FROM Usuarios";
-    final String GETONE = "SELECT usuario, nombre, email, apellidos, contraseña FROM Usuarios WHERE email = ?";
+	final String INSERT = "INSERT INTO Usuario( nickname, nombre, email, apellidos, password, tipo, registro, sesion) VALUES (?,?,?,?,?,?,?,?)"; 
+	final String UPDATE = "UPDATE Usuario SET nickname = ? , nombre = ?, email = ?, apellidos = ?, password = ?, registro = ?, sesion = ? WHERE email = ?";
+    final String DELETE = "DELETE FROM Usuario WHERE email = ?";
+    final String GETALL = "SELECT nickname, nombre, email, apellidos, password, tipo, registro, sesion FROM Usuario";
+    final String GETONE = "SELECT nickname, nombre, email, apellidos, password, tipo, registro, sesion FROM Usuario WHERE email = ?";
     
     
     private Connection conn;
@@ -63,8 +64,8 @@ public class MySQLUsuarioDAO implements UsuarioDAO{
             stat.setString(4, u.getApellidos());
             stat.setString(5, u.getPassword());
             stat.setString(6, u.getTipoUsuario());
-            stat.setDate(7, u.getRegistro());
-            stat.setDate(8, u.getSesion());
+            stat.setDate(7, Date.valueOf(u.getRegistro()));
+            stat.setDate(8, Date.valueOf(u.getSesion()));
             
             
             if(stat.executeUpdate() == 0){
@@ -107,8 +108,8 @@ public class MySQLUsuarioDAO implements UsuarioDAO{
             stat.setString(3, u.getEmail());
             stat.setString(4, u.getApellidos());
             stat.setString(5, u.getPassword());
-            stat.setDate(6, u.getRegistro());
-            stat.setDate(7, u.getSesion());
+            stat.setDate(6, Date.valueOf(u.getRegistro()));
+            stat.setDate(7, Date.valueOf(u.getSesion()));
             stat.setString(8, u.getEmail());
             
             
@@ -140,14 +141,14 @@ public class MySQLUsuarioDAO implements UsuarioDAO{
 	}
 
 	@Override
-	public void eliminar(Usuario u) throws DAOException {
+	public void eliminar(String email) throws DAOException {
 		
 		PreparedStatement stat = null;
         
         try{
             
             stat = conn.prepareStatement(DELETE);
-            stat.setString(1, u.getEmail());
+            stat.setString(1, email);
 
             if(stat.executeUpdate() == 0){
                 throw new DAOException("Puede que no se haya guardado.");
@@ -172,13 +173,13 @@ public class MySQLUsuarioDAO implements UsuarioDAO{
         String nombre = rs.getString("nombre");
         String apellidos = rs.getString("apellidos");
         String nickname = rs.getString("nickname");
-        String contraseña = rs.getString("contraseña");
+        String password = rs.getString("password");
         String email = rs.getString("email");
         String tipo = rs.getString("tipo");
-        Date registro = rs.getDate("registro");
-        Date sesion = rs.getDate("sesion");
+        LocalDate registro = rs.getDate("registro").toLocalDate();
+        LocalDate sesion = rs.getDate("sesion").toLocalDate();
         
-        Usuario j = new Usuario(nombre,apellidos,email,nickname,contraseña);
+        Usuario j = new Usuario(nombre,apellidos,email,nickname,password);
         j.setTipoUsuario(tipo);
         j.setRegistro(registro);
         j.setSesion(sesion);
@@ -296,6 +297,12 @@ public class MySQLUsuarioDAO implements UsuarioDAO{
 
 	@Override
 	public void guardarFichero() throws FileNotFoundException, IOException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void eliminar(Usuario j) throws DAOException {
 		// TODO Auto-generated method stub
 		
 	}

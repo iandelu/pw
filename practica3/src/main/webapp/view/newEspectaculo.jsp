@@ -72,6 +72,7 @@
 				<input type="submit" class="small-button" value="Guardar">
 			</form>
 		</div>
+		
 		<script>
 			document.getElementById("adType").addEventListener("change", function(e) {
 				let tipo = e.target.value;

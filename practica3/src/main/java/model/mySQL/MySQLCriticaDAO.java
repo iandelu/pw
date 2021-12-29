@@ -22,7 +22,7 @@ public class MySQLCriticaDAO implements CriticaDAO{
 	    *   ------------------------------------_
 	    */
 	    
-	    final String INSERT = "INSERT INTO Critica( id, autor, titulo, puntuacion, texto, espectáculo) VALUES (?,?,?,?,?,?)"; 
+	    final String INSERT = "INSERT INTO Critica( id, autor, titulo, puntuacion, texto, espectaculo) VALUES (?,?,?,?,?,?)"; 
 	    final String UPDATE = "UPDATE Critica SET id = ? , autor = ?, titulo = ?, puntuacion = ?, texto = ?, espectaculo = ? WHERE id = ?";
 	    final String DELETE = "DELETE FROM Critica WHERE id = ?";
 	    final String GETALL = "SELECT id, autor, titulo, puntuacion, texto, espectaculo FROM Critica";

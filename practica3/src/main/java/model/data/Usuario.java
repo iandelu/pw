@@ -19,8 +19,8 @@ public class Usuario implements Serializable{
 	private String nickname;
 	private String password;
 	private String tipoUsuario;
-	private Date registro;
-	private Date sesion;
+	private LocalDate registro;
+	private LocalDate sesion;
 	
 	public Usuario(String nombre, String apellidos, String email, String nickname, String password) throws Exception {
 		super();
@@ -66,11 +66,16 @@ public class Usuario implements Serializable{
 		this.password = password;
 	}
 
+	
+		
+	
 	@Override
 	public String toString() {
-		return "Usuario [nombre=" + nombre + ", apellidos=" + apellidos + ", email=" + email + ", nickname=" + nickname
-				+ ", password=" + password + "]";
+		return "Usuario [nombre=" + nombre + ", apellidos=" + apellidos + ", email=" + email.getEmail() + ", nickname=" + nickname
+				+ ", password=" + password + ", tipoUsuario=" + tipoUsuario + ", registro=" + registro + ", sesion="
+				+ sesion + "]";
 	}
+
 
 	public String getTipoUsuario() {
 		return tipoUsuario;
@@ -80,22 +85,22 @@ public class Usuario implements Serializable{
 	}
 
 
-	public Date getRegistro() {
+	public LocalDate getRegistro() {
 		return registro;
 	}
 
 
-	public void setRegistro(Date registro) {
+	public void setRegistro(LocalDate registro) {
 		this.registro = registro;
 	}
 
 
-	public Date getSesion() {
+	public LocalDate getSesion() {
 		return sesion;
 	}
 
 
-	public void setSesion(Date sesion) {
+	public void setSesion(LocalDate sesion) {
 		this.sesion = sesion;
 	}
 

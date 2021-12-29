@@ -19,9 +19,9 @@ public class MySQLValoracionDAO implements ValoracionDAO{
 	final String INSERT = "INSERT INTO Valoracion( id, autor, nota, critica) VALUES (?,?,?,?)"; 
 	final String UPDATE = "UPDATE Valoracion SET id = ? , autor = ?, nota = ?, critica = ? WHERE id = ?";
     final String DELETE = "DELETE FROM Valoracion WHERE id = ?";
-    final String GETALL = "SELECT id, autor, nota, critica FROM Usuarios";
-    final String GETALLCRITICA = "SELECT id, autor, nota, critica FROM Usuarios WHERE critica = ?";
-    final String GETONE = "SELECT id, autor, nota, critica FROM Usuarios WHERE id = ?";
+    final String GETALL = "SELECT id, autor, nota, critica FROM Valoracion";
+    final String GETALLCRITICA = "SELECT id, autor, nota, critica FROM Valoracion WHERE critica = ?";
+    final String GETONE = "SELECT id, autor, nota, critica FROM Valoracion WHERE id = ?";
     
     private Connection conn;
     
@@ -142,12 +142,12 @@ public class MySQLValoracionDAO implements ValoracionDAO{
 	
 	private Valoracion convertir(ResultSet rs) throws Exception{
 	
-        Long idValoracion = rs.getLong("id");
+        Long id = rs.getLong("id");
         String autor = rs.getString("autor");
         int nota = rs.getInt("nota");
         Long critica = rs.getLong("critica");
         
-        Valoracion v = new Valoracion(autor,nota,critica);
+        Valoracion v = new Valoracion(id,autor,nota,critica);
         
         return v;
         

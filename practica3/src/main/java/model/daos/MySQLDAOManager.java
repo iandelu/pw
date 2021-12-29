@@ -10,6 +10,7 @@ import model.mySQL.MySQLCriticaDAO;
 import model.mySQL.MySQLEspectaculoDAO;
 import model.mySQL.MySQLFuncionDAO;
 import model.mySQL.MySQLUsuarioDAO;
+import model.mySQL.MySQLValoracionDAO;
 
 public class MySQLDAOManager {
 
@@ -19,6 +20,7 @@ public class MySQLDAOManager {
 	private MySQLCriticaDAO criticas = null;
 	private MySQLEspectaculoDAO espectaculos = null;
 	private MySQLFuncionDAO funciones = null;
+	private MySQLValoracionDAO valoraciones = null;
 
 	public MySQLDAOManager(String host, String username, String password, String database) throws SQLException{
         
@@ -56,6 +58,14 @@ public class MySQLDAOManager {
 		}
 		return funciones;
 	}
+	
+	public MySQLValoracionDAO getValoraciones() {
+			
+			if(valoraciones == null) {
+				valoraciones = new MySQLValoracionDAO(conn);
+			}
+			return valoraciones;
+		}
 	
 	public void guardarFicheros() throws IOException, IOException {
 

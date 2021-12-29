@@ -10,13 +10,14 @@ public class Valoracion implements Serializable{
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	private Long idValoracion;
+	private Long id;
 	private String autor;
 	private int nota;
 	private Long critica;
 	
-	public Valoracion(String autor, int nota, Long critica) {
+	public Valoracion(long id, String autor, int nota, long critica) {
 		super();
+		this.id = id;
 		this.autor = autor;
 		this.nota = nota;
 		this.critica = critica;
@@ -47,11 +48,11 @@ public class Valoracion implements Serializable{
 	}
 
 	public Long getIdValoracion() {
-		return idValoracion;
+		return id;
 	}
 
-	public void setIdValoracion(Long idValoracion) {
-		this.idValoracion = idValoracion;
+	public void setIdValoracion(Long id) {
+		this.id = id;
 	}
 
 	public Long getCritica() {
@@ -61,6 +62,13 @@ public class Valoracion implements Serializable{
 	public void setCritica(Long critica) {
 		this.critica = critica;
 	}
+
+	@Override
+	public String toString() {
+		return "Valoracion [id=" + id + ", autor=" + autor + ", nota=" + nota + ", critica=" + critica + "]";
+	}
+	
+	
 	
 	
 	

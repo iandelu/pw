@@ -71,7 +71,7 @@ public class Critica implements Serializable {
 		this.valoraciones = valoraciones;
 	}
 	
-	public void añadirValoracion(Valoracion nuevaValoracion) {
+	public void addValoracion(Valoracion nuevaValoracion) {
 		valoraciones.add(nuevaValoracion);
 	}
 
