@@ -1,8 +1,269 @@
-@charset "ISO-8859-1";
-.container{
-	background-color: silver;
-	border-radius: 10px;
-	padding: 25px;
-	margin-top: 50px;
-	
+/* GENERAL */
+body{
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    background-color: rgb(252, 252, 252);
+    padding: 0px;
+    margin: auto;
+    max-width: 1366px;
+}
+
+.page-title{
+    text-align: center;
+}
+
+.main{
+    text-align: center;
+}
+
+#bienvenida{
+    text-align: center;
+}
+
+.subtitle{
+    text-align: center;
+}
+
+.small-text{
+	font-size: 12px;
+}
+
+.right{
+	float: right;
+}
+
+#container-search-button{
+	padding-bottom: 30px;
+}
+
+/* CUADRO CENTRADO */
+.cuadro{
+    display: flex;
+    width: 100%;
+    height: 100vh;
+}
+
+.container-center{
+    padding-top: 50px;
+ 	padding-right: 80px;
+	padding-bottom: 50px;
+	padding-left: 80px;			
+	min-width: 150px;
+	width: 25%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color:rgb(224, 245, 255);
+    border-radius: 10px;
+    border: solid 4px rgb(112, 186, 255);
+}
+
+
+/* BOTONES */
+.small-button{
+    display: inline-block;
+    border-radius: 5px;
+    cursor: pointer;
+    padding: 4px;
+    border: solid 2px #bcdbff;
+    width: 100px;
+    background-color: white;
+    transition: background-color 100ms;
+    margin: 2px;
+    font-family: inherit;
+}
+
+.small-button:hover{
+    background-color: rgb(171, 202, 248);
+}
+
+.big-button{
+	display: inline-block;
+    border-radius: 5px;
+    cursor: pointer;
+    padding: 8px;
+    border: solid 2px #bcdbff;
+    width: 180px;
+    background-color: white;
+    transition: background-color 100ms;
+    font-size: 18px;
+    font-family: inherit;
+}
+
+.big-button:hover{
+    background-color: rgb(171, 202, 248);
+}
+
+#paginate-buttons{
+	padding-top: 10px;
+	padding-bottom: 50px;
+}
+
+.paginate-button{
+	display: inline-block;
+    border-radius: 5px;
+    cursor: pointer;
+    padding: 4px;
+    border: solid 2px #bcdbff;
+    width: 50px;
+    background-color: white;
+    transition: background-color 100ms;
+    margin: 2px;
+    font-family: inherit;
+}
+
+/* FORMULARIOS */
+.form-login{
+    text-align: center;
+}
+
+.container-tablon-main{
+	padding: 20px;
+}
+
+.form-register{
+    text-align: center;
+}
+
+label{
+    width: 150px;
+    display: inline-block;
+    margin: 0;
+    padding: 2px;
+    color: black;
+    font-size: 14px;
+    text-align: left;
+}
+
+.modify-form input{
+	width: 150px;
+}
+
+
+.text-center{
+	text-align: center;
+}
+
+.container-user-data{
+	display: inline-block;
+}
+
+#change-password-btn{
+	width: 150px;
+}
+
+.input-form{
+	display: inline-block;
+    border-radius: 5px;
+    padding: 4px;
+    border: solid 2px #bcdbff;
+    width: 150px;
+    background-color: white;
+    font-family: inherit;
+    margin: 2px;
+}
+
+/* ANUNCIOS */
+.tablon-anuncios{
+	border: solid 4px rgb(112, 186, 255);
+	margin: 8px;
+	padding: 10px;
+	border-radius: 4px;
+	min-height: 200px;
+}
+
+.anuncio{
+	border: solid 2px #000000;
+	margin: 4px;
+	padding: 10px;
+	border-radius: 4px;
+}
+
+/* MENU DE NAVEGACION */
+header.navbar {
+    display: flex;
+    top: 0;
+    margin: 0;
+    width: 100%;
+    background-color: #333;
+}
+
+ul.navbar-left {
+  list-style-type: none;
+  display: flex;
+  margin-right: auto;
+  margin-top: 0;
+  margin-bottom: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+}
+
+li.navbar-item {
+  float: left;
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li a:hover {
+  background-color: #111;
+}
+
+ul.navbar-right {
+  list-style-type: none;
+  display: flex;
+  margin-left: auto;
+  margin-top: 0;
+  margin-bottom: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+}
+
+/* MENSAJE DE ÉXITO */
+.message-success{
+	max-width: 300px;
+	min-width: 200px;
+	padding: 10px;
+	border: none;
+	border-radius: 5px;
+	background-color: #abedb2;
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+}
+
+.message-success-left{
+	max-width: 300px;
+	min-width: 200px;
+	padding: 10px;
+	border: none;
+	border-radius: 5px;
+	background-color: #abedb2;
+}
+
+.message-error-left{
+	max-width: 300px;
+	min-width: 200px;
+	padding: 10px;
+	border: none;
+	border-radius: 5px;
+	background-color: #ff9999;
+}
+
+/* SELECT */
+.select-type{
+	display: inline-block;
+    border-radius: 5px;
+    padding: 4px;
+    border: solid 2px #bcdbff;
+    width: 150px;
+    background-color: white;
+    font-family: inherit;
 }
