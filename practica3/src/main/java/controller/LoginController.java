@@ -28,7 +28,7 @@ public class LoginController {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		HttpSession session = request.getSession();
-        UserBean usuarioBean = (UserBean) session.getAttribute("jugadorBean");
+        UserBean usuarioBean = (UserBean) session.getAttribute("userBean");
         	
         	try{
                 Class.forName("com.mysql.jdbc.Driver");
